@@ -4,7 +4,7 @@ class Solution {
         int high = nums.length-1;
         int mid;
         while(low <= high){
-            mid = low + (high-low)/2;
+            mid = (high+low)/2;
             
             if(nums[mid] == target){
                 return mid;
@@ -14,7 +14,6 @@ class Solution {
                 low = mid+1;
             }
         }
-    
         return low;
 }
 }
