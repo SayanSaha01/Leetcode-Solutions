@@ -20,7 +20,7 @@ class Solution {
             curr=curr.next;
         }
         curr.next = head;
-        k%=count;
+        k=k%count;
         k=count-k;
         while(k-->0)
         {
