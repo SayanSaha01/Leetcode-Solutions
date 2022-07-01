@@ -21,7 +21,8 @@ class Solution {
         }
         curr.next = head;
         k%=count;
-        for(int i=0;i<count-k;i++)
+        k=count-k;
+        while(k-->0)
         {
             curr=curr.next;
         }
