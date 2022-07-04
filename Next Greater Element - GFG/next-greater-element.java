@@ -35,8 +35,10 @@ class Solution
     { 
         long[] answer = new long[n];
         Stack<Long> s = new Stack<>();
-        answer[n-1]=-1;
+        
         s.push(arr[n-1]);
+        
+        answer[n-1]=-1;
         for(int i=n-2;i>=0;i--)
         {
             while(s.isEmpty()==false&&s.peek()<=arr[i])
