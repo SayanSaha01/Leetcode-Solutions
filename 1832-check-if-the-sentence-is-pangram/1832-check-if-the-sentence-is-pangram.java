@@ -2,14 +2,12 @@ class Solution {
     public boolean checkIfPangram(String sentence) {
         if(sentence.length()<26)
             return false;
-        String alphabets="abcdefghijklmnopqrstuvwxyz";
-        for(int i=0;i<alphabets.length();i++)
+        HashMap<Character,Integer> map = new HashMap<>();
+        for(int i=0;i<sentence.length();i++)
         {
-            if(sentence.indexOf(alphabets.charAt(i))==-1)
-            {
-                return false;
-            }
+            Character ch = sentence.charAt(i);
+            map.put(ch,i);
         }
-        return true;
+        return map.size()==26?true:false;
     }
 }
