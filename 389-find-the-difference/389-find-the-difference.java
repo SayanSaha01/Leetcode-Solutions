@@ -1,18 +1,11 @@
 class Solution {
     public char findTheDifference(String s, String t) {
-        HashSet<Character> h = new HashSet<>();
-        for(char c:(s+t).toCharArray())
-        {
-            if(!h.add(c))
-            {
-                h.remove(c);
-            }
-            else
-            {
-                h.add(c);
-            }
+        int charCode = t.charAt(s.length());
+        
+        for (int i = 0; i < s.length(); ++i) {
+              charCode -= (int)s.charAt(i);
+              charCode += (int)t.charAt(i); 
         }
-        Iterator<Character> i = h.iterator();
-        return i.next();
+        return (char)charCode;
     }
 }
