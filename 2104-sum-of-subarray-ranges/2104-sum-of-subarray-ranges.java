@@ -1,18 +1,17 @@
 class Solution {
     public long subArrayRanges(int[] nums) {
-        long ans=0;
-     
+        long sum=0;
         for(int i=0;i<nums.length;i++)
-        {  
-            int mi=nums[i],ma=nums[i];
+        {
+            int max = nums[i];
+            int min = nums[i];
             for(int j=i;j<nums.length;j++)
             {
-                mi=Math.min(mi,nums[j]);
-                ma=Math.max(ma,nums[j]); 
-                ans+=Math.abs(mi-ma);
+                max=Math.max(nums[j],max);
+                min = Math.min(nums[j],min);
+                sum+=Math.abs(max-min);
             }
-     
-       }
-        return ans;
+        }
+        return sum;
     }
 }
