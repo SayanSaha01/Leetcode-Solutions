@@ -1,44 +1,33 @@
 class Solution {
     public int calculate(String s) {
-        Stack<Integer> stack = new Stack<>();
-        char op='+';
-        int currno=0;
-        int len = s.length();
-        for(int i=0;i<len;i++)
-        {
-            char ch=s.charAt(i);
-            
-            if(Character.isDigit(ch))
-            {
-                currno = (currno*10)+(ch-'0');
+        int res = 0, pre = 0, curr = 0;
+    char sign = '+';
+    char[] array = s.trim().toCharArray();
+    for(int i=0; i<=array.length; i++){
+        if(i!=array.length && Character.isDigit(array[i]))
+            curr = curr*10 + array[i]-'0';
+        else{
+            if(i!=array.length && array[i]==' ') continue;
+            if(sign=='+'){
+                res += curr;
+                pre = curr;
             }
-            if(!Character.isDigit(ch) && ch!=' '||i==len-1)
-            {
-                if(op=='+')
-                {
-                    stack.push(currno);
-                }
-                else if(op=='-')
-                {
-                    stack.push(-currno);
-                }
-                else if(op=='*')
-                {
-                    stack.push(stack.pop()*currno);
-                }
-                else if(op=='/')
-                {
-                    stack.push(stack.pop()/currno);
-                }
-                currno=0;
-                op=ch;
+            if(sign=='-'){
+                res -= curr;
+                pre = -curr;
             }
+            if(sign=='*'){
+                res = res - pre + pre*curr;
+                pre = pre*curr;
+            }
+            if(sign=='/'){
+                res = res - pre + pre/curr;
+                pre = pre/curr;
+            }
+            curr = 0;
+            if(i!=array.length) sign = array[i];
         }
-        int sum=0;
-        while(!stack.isEmpty())
-        {
-            sum+=stack.pop();
-        }
-        return sum;
+    }
+    return res;
     }
 }
