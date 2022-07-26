@@ -6,12 +6,12 @@ class Solution {
         {
             char[] charray = word.toCharArray();
             Arrays.sort(charray);
-            String key = new String(charray);
+            String key=new String(charray);
             if(!map.containsKey(key))
             {
-                List<String> newList = new ArrayList<String>();
-                newList.add(word);
-                map.put(key,newList);
+                List<String> newlists = new ArrayList<String>();
+                newlists.add(word);
+                map.put(key,newlists);
             }
             else
             {
