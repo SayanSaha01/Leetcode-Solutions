@@ -5,12 +5,13 @@ class Solution {
             if(!a.isEmpty())
                 st.push(a);
         }
-        StringBuilder sb = new StringBuilder();
+        //StringBuilder sb = new StringBuilder();
+        String z="";
         while(!st.isEmpty())
         {
-            sb.append(st.pop());
-            sb.append(" ");
+            z+=st.pop();
+            z+=" ";
         }
-        return sb.toString().trim();
+        return z.trim();
     }
 }
