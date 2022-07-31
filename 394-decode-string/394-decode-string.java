@@ -1,25 +1,27 @@
 class Solution {
     public String decodeString(String s) {
         Stack<Integer> intStack = new Stack<>();
-        Stack<StringBuilder> strStack = new Stack<>();
-        StringBuilder cur = new StringBuilder();
+        Stack<String> strStack = new Stack<>();
+        String cur = "";
         int k = 0;
-        for (char ch : s.toCharArray()) {
+        for (char ch : s.toCharArray()) 
+        {
             if (Character.isDigit(ch)) {
                 k = k * 10 + ch - '0';
             } 
             else if ( ch == '[') {
                 intStack.push(k);
                 strStack.push(cur);
-                cur = new StringBuilder();
+                cur = "";
                 k = 0;
             } 
             else if (ch == ']') {
-                StringBuilder tmp = cur;
+                String tmp = cur;
                 cur = strStack.pop();
-                for (k = intStack.pop(); k > 0; k--) cur.append(tmp);
+                for (k = intStack.pop(); k > 0; k--) 
+                    cur+=tmp;
             } 
-            else cur.append(ch);
+            else cur+=ch;
         }
         return cur.toString();
     }
