@@ -15,15 +15,15 @@
  */
 class Solution {
     public List<List<Integer>> levelOrderBottom(TreeNode root) {
-        Queue<TreeNode> queue =  new LinkedList<TreeNode>();
-        List<List<Integer>> wraplist = new LinkedList<List<Integer>>();
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        ArrayList<List<Integer>> arr = new ArrayList<List<Integer>>();
         if(root==null)
-            return wraplist;
+            return arr;
         queue.offer(root);
         while(!queue.isEmpty())
         {
-            int levelnum=queue.size();
             List<Integer> sublist = new LinkedList<Integer>();
+            int levelnum=queue.size();
             for(int i=0;i<levelnum;i++)
             {
                 if(queue.peek().left!=null)
@@ -36,8 +36,8 @@ class Solution {
                 }
                 sublist.add(queue.poll().val);
             }
-            wraplist.add(0,sublist);
+            arr.add(0,sublist);     
         }
-        return wraplist;
+        return arr;
     }
 }
