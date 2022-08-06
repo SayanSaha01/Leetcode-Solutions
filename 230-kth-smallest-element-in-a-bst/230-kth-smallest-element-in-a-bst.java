@@ -14,20 +14,18 @@
  * }
  */
 class Solution {
-    int count=0;
-    int result = Integer.MIN_VALUE;
     public int kthSmallest(TreeNode root, int k) {
-        traverse(root,k);
-        return result;
+        ArrayList<Integer> arr = new ArrayList<>();
+        traverse(root,arr);
+        return arr.get(k-1);
     }
-    private void traverse(TreeNode root, int k)
+    private void traverse(TreeNode root,ArrayList<Integer> arr)
     {
         if(root==null)
             return;
-        traverse(root.left,k);
-        count++;
-        if(count==k)
-            result = root.val;
-        traverse(root.right,k);
+        traverse(root.left,arr);
+        arr.add(root.val);
+        traverse(root.right,arr);
     }
+    
 }
