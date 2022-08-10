@@ -5,10 +5,10 @@ class Solution {
         {
             int sum=0;
             for(int j=0;j<=i;j++)
-            {   
+            {
                 sum+=nums[j];
-                rsum[i]=sum;
             }
+            rsum[i]=sum;
         }
         return rsum;
     }
