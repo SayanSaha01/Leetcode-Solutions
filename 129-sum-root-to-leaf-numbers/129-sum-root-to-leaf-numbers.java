@@ -17,12 +17,12 @@ class Solution {
     public int sumNumbers(TreeNode root) {
         return rootsum(root,0);
     }
-    public int rootsum(TreeNode root,int s)
+    private int rootsum(TreeNode root,int s)
     {
         if(root==null)
             return 0;
-        if(root.left==null&&root.right==null)
-            return s*10+root.val;
-        return rootsum(root.left,s*10+root.val)+rootsum(root.right,s*10+root.val);
+        if(root.left==null && root.right==null)
+            return root.val+s*10;
+        return rootsum(root.left,root.val+s*10)+rootsum(root.right,root.val+s*10);
     }
 }
