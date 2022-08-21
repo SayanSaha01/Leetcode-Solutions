@@ -1,24 +1,28 @@
 // 0 --> not coloured
 class Solution {
     public boolean isBipartite(int[][] graph) {
-        int n = graph.length;
-        int[] colors = new int[n];			
-				
-        for (int i = 0; i < n; i++) {              //This graph might be a disconnected graph. So check each unvisited node.
-            if (colors[i] == 0 && !validColor(graph, colors, 1, i)) {
+        int[] color = new int[graph.length];
+        for(int i=0;i<graph.length;i++)
+        {
+            //if my node is not yet colored and my node is not valid
+            if(color[i]==0 && !isValidColor(graph,color,1,i))  
+            {
                 return false;
-            }
+            } 
         }
         return true;
     }
-    
-    public boolean validColor(int[][] graph, int[] colors, int color, int node) {
-        if (colors[node] != 0) {
-            return colors[node] == color;
-        }       
-        colors[node] = color;       
-        for (int next : graph[node]) {
-            if (!validColor(graph, colors, -color, next)) {
+    public boolean isValidColor(int[][] g, int[] color,int c,int node)
+    {
+        //if the node is already coloured and if the colour is matching or not
+        if(color[node]!=0)
+            return color[node]==c;
+        //if it is not coloured, colour it with the color passed as parameter
+        color[node]=c;
+        for(int n:g[node])
+        {
+            if(!isValidColor(g,color,-c,n))
+            {
                 return false;
             }
         }
