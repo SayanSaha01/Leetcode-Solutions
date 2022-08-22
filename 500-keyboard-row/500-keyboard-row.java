@@ -17,6 +17,10 @@ class Solution {
             if((count1==words[i].length())||(count2==words[i].length())||(count3==words[i].length()))
                 list.add(words[i]);
         }
-        return list.toArray(new String[0]);
+        String[] ans = new String[list.size()];
+        for(int i = 0; i < list.size(); i++) {
+            ans[i] = list.get(i);
+        }
+        return ans;
     }
 }
