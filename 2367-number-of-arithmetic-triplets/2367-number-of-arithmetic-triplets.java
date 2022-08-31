@@ -1,18 +1,18 @@
+//nums[j] - nums[i] == diff => nums[j] = nums[i] + diff
+//nums[k] - nums[j] == diff => nums[k] - nums[j] = diff 
+//=> nums[k] - nums[i] = 2*diff
+
 class Solution {
     public int arithmeticTriplets(int[] nums, int diff) {
         int count=0;
-        for(int i=0;i<nums.length-2;i++)
+        HashSet<Integer> set = new HashSet<Integer>();
+        for(int n:nums)
         {
-            for(int j=i+1;j<nums.length-1;j++)
+            if(set.contains(n-diff) && set.contains(n-2*diff))
             {
-                for(int k=j+1;k<nums.length;k++)
-                {
-                    if((nums[j]-nums[i]==diff)&&(nums[k]-nums[j]==diff))
-                    {
-                        count++;
-                    }
-                }
+                count++;
             }
+            set.add(n);
         }
         return count;
     }
