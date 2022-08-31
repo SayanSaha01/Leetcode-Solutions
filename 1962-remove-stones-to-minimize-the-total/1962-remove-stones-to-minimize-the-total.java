@@ -10,7 +10,7 @@ class Solution {
         for(int j=0;j<k;j++)
         {
             int d=pq.poll();
-            pq.add(d-d/2);
+            pq.add((int)(d-Math.floor(d/2)));
             sum-=d/2;
         }
         return sum;
