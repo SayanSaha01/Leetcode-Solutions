@@ -12,11 +12,14 @@ class Solution {
             }
             else
             {
-                result = Math.max(result, map.get(key) + i);
-                map.put(key, Math.max(map.get(key), i));
+                int temp=i+map.get(key);
+                if(temp>result)
+                {
+                    result=temp;
+                }
+                map.put(key,Math.max(i,map.get(key)));
             }
         }
-        
         return result;
     }
     public static int sum(int num)
