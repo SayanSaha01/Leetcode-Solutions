@@ -1,26 +1,26 @@
 class Solution {
     
-    public void solve(Set<List<Integer>> set, List<Integer> list, int idx, int[] nums)
-    {
-        if(idx==nums.length)
-        {
-            set.add(new ArrayList<>(list));
+    void f(Set<List<Integer>> ans, List<Integer> output, int[] a, int i){
+        if(i >= a.length){
+            ans.add(new ArrayList<>(output));
             return;
         }
         
-        //include
-        list.add(nums[idx]);
-        solve(set,list,idx+1,nums);
+		// including
+        output.add(a[i]);
+        f(ans, output, a, i+1);
         
-        //exclude
-        list.remove(list.size()-1);
-        solve(set,list,idx+1,nums);
+		// excluding
+        output.remove(output.size()-1);
+        f(ans, output, a, i+1);
     }
-    public List<List<Integer>> subsetsWithDup(int[] nums) {
-        Arrays.sort(nums);
-        Set<List<Integer>> set = new HashSet<>();
-        List<Integer> list = new ArrayList<>();
-        solve(set,list,0,nums);
-        return new ArrayList<>(set);
+    public List<List<Integer>> subsetsWithDup(int[] a) {
+        
+        // sorting because we don't want to add duplicate elements
+        Arrays.sort(a);
+        Set<List<Integer>> ans = new HashSet<>();
+        List<Integer> output = new ArrayList();
+        f(ans, output, a, 0);
+        return new ArrayList<>(ans);
     }
 }
