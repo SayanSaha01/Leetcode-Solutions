@@ -1,15 +1,26 @@
 class Solution {
     public List<List<Integer>> subsets(int[] nums) {
-        List<List<Integer>> result = new ArrayList<>();
-        result.add(new ArrayList<>());
-        for(int n : nums){
-            int size = result.size();
-            for(int i=0; i<size; i++){
-                List<Integer> subset = new ArrayList<>(result.get(i));
-                subset.add(n);
-                result.add(subset);
-            }
+        List<List<Integer>> powerset = new ArrayList<>();
+        List<Integer> subset = new ArrayList<>();
+        int idx=0;
+        solve(powerset,subset,idx,nums);
+        return powerset;
+    }
+    private void solve(List<List<Integer>> powerset,List<Integer> subset,int idx,int[] nums)
+    {
+        //base case
+        if(idx==nums.length)
+        {
+            powerset.add(new ArrayList<>(subset));
+            return;
         }
-        return result;
+        
+        //include
+        solve(powerset, subset,idx + 1, nums);
+        subset.add(nums[idx]);
+        
+        //exclude
+        solve(powerset, subset,idx + 1, nums);
+        subset.remove(subset.size()-1);
     }
 }
