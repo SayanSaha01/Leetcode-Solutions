@@ -64,7 +64,11 @@ class Solution {
         int[] dp = new int[n+1];
         
         dp[0] = nums[0];
-        dp[1] = Math.max(nums[1],nums[0]);
+        dp[1] = Math.max(nums[1],dp[0]);  /*we are getting this idea from the formula                 => Math.max(include,exclude) 
+        => Math.max(dp[i-2] + nums[i],dp[i-1]);
+        we are trying to find out the value of dp[i] where i=1 hence dp[i-2] doesnt exist hence we assume it to be zero 
+        =>dp[i] (i=1) = Math.max(nums[1],dp[0]);*/
+        
         for(int i=2;i<n;i++)
         {
             int include = dp[i-2] + nums[i];
