@@ -16,11 +16,13 @@ class Solution {
         }
         
         //include
-        solve(powerset, subset,idx + 1, nums);
         subset.add(nums[idx]);
+        solve(powerset, subset,idx + 1, nums);
+        
         
         //exclude
-        solve(powerset, subset,idx + 1, nums);
         subset.remove(subset.size()-1);
+        solve(powerset, subset,idx + 1, nums);
+        
     }
 }
