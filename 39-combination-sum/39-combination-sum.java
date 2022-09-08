@@ -1,25 +1,26 @@
 class Solution {
-    public List<List<Integer>> combinationSum(int[] candidates, int target) {
-        List<List<Integer>> list = new ArrayList<>(); 
-        combination(list,new ArrayList<>(),candidates,target,0);
-        return list;
+    public List<List<Integer>> combinationSum(int[] a, int t) {
+        List<List<Integer>> ans = new ArrayList<>(); // ans list
+        List<Integer> ls = new ArrayList<>();  // our inside list to store different combinations
+        int index = 0; // starting from index 0
+        combSum(index,ans,a,t,ls); // recursive function
+        return ans;
     }
-    public void combination(List<List<Integer>> list, List<Integer> ds,int[] arr,int target,int idx)
-    {
-        if(idx==arr.length)
-        {
-            if(target==0)
-            {
-                list.add(new ArrayList<>(ds));
+    static void combSum(int i,List<List<Integer>>ans,int a[],int t,List<Integer> ds) {
+        // Base condition
+		if(i == a.length) {
+            if(t == 0) {
+                ans.add(new ArrayList<>(ds)); // ArrayList constructor constructs a list of specified collection, in our case it is List<Integer> ds
             }
             return;
         }
-        if(arr[idx]<=target)
-        {
-            ds.add(arr[idx]);
-            combination(list,ds,arr,target-arr[idx],idx);
-            ds.remove(ds.size()-1);
+		
+		// Check if the element at index is smaller than the target or not
+        if(a[i] <= t) {
+            ds.add(a[i]);
+            combSum(i,ans,a,t-a[i],ds); // calls for same index and decreasing target by a[i]
+            ds.remove(ds.size()-1); // during backtracking we will remove the added element in ds
         }
-        combination(list,ds,arr,target,idx+1);
+        combSum(i+1,ans,a,t,ds); // call for next index
     }
 }
