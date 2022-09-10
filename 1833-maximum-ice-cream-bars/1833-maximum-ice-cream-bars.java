@@ -1,5 +1,21 @@
 class Solution {
     public int maxIceCream(int[] costs, int coins) {
+        Arrays.sort(costs);
+        int count=0;
+        for(int cost:costs)
+        {
+            if(cost>coins)
+                break;
+            else
+                coins-=cost;
+                count++;
+        }
+        return count;
+    }
+}
+/*
+class Solution {
+    public int maxIceCream(int[] costs, int coins) {
         PriorityQueue<Integer> pq = new PriorityQueue<Integer>();
         for(int i:costs)
         {
@@ -15,4 +31,4 @@ class Solution {
         }
         return count;
     }
-}
+}*/
