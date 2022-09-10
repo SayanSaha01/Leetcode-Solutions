@@ -25,9 +25,7 @@ class Solution {
     int prev1 = arr.get(0);
         
     for(int i=1; i<n; i++){
-        int  incl = arr.get(i);
-        if(i>1)
-            incl += prev2;
+        int  incl = prev2 + arr.get(i);
         int excl = 0 + prev1;
         
         int ans = Math.max(incl, excl);
