@@ -14,10 +14,8 @@ class Solution {
             if(i!=n-1) 
                 arr2.add(nums[i]);
         }
-        int ans1 = solve(arr1);
-        int ans2 = solve(arr2);
 
-        return Math.max(ans1,ans2);
+        return Math.max(solve(arr1),solve(arr2));
     }
     static int solve(ArrayList<Integer> arr){
     int n = arr.size();
