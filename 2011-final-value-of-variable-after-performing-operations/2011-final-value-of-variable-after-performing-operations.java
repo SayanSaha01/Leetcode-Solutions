@@ -5,12 +5,12 @@ class Solution {
         {
             if(operations[i].contains("--X"))
                 x-=1;
-            if(operations[i].contains("++X"))
-                x+=1;
             if(operations[i].contains("X++"))
                 x+=1;
+            if(operations[i].contains("++X"))
+                x+=1;
             if(operations[i].contains("X--"))
-                x-=1;   
+                x-=1;
         }
         return x;
     }
