@@ -25,20 +25,20 @@ class Solution {
         for(int i[] : dp)
             Arrays.fill(i,-1);
         
-        int one = helper(nums,0,nums.length-2,0);
-        int two = helper(nums,1,nums.length-1,1);
+        int one = helper(nums,nums.length-2,0);
+        int two = helper(nums,nums.length-1,1);
         
         return Math.max(one,two);
     }
     
-    public int helper(int nums[],int start,int n,int idx){
-        if(n < start)
+    public int helper(int nums[],int n,int idx){
+        if(n < idx)
             return 0;
-        if(n == start)
-            return dp[n][idx] = nums[start];
+        if(n == idx)
+            return dp[n][idx] = nums[idx];
         if(dp[n][idx] != -1)
             return dp[n][idx];
-        return dp[n][idx] = Math.max(helper(nums,start,n-1,idx),
-                                     helper(nums,start,n-2,idx) + nums[n]);
+        return dp[n][idx] = Math.max(helper(nums,n-1,idx),
+                                     helper(nums,n-2,idx) + nums[n]);
     }
 }
