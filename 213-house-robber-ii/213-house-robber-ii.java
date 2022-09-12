@@ -1,36 +1,44 @@
+/*
 class Solution {
     public int rob(int[] nums) {
-        int n = nums.length;
-        ArrayList<Integer> arr1=new ArrayList<>();
-        ArrayList<Integer> arr2=new ArrayList<>();
-
-        if(n==1)
-           return nums[0];
-
-        for(int i=0; i<n; i++)
-        {
-            if(i!=0) 
-                arr1.add(nums[i]);
-            if(i!=n-1) 
-                arr2.add(nums[i]);
-        }
-
-        return Math.max(solve(arr1),solve(arr2));
+        if(nums.length == 1)return nums[0];
+        int one = helper(nums,0,nums.length-2);
+        int two = helper(nums,1,nums.length-1);
+        return Math.max(one,two);
     }
-    static int solve(ArrayList<Integer> arr){
-    int n = arr.size();
-    int prev2 =0;
-    int prev1 = arr.get(0);
+    public int helper(int nums[],int start,int n){
+        if(n < start)
+           return 0;
+        if(n == start)
+           return nums[start];
+        return Math.max(helper(nums,start,n-1),helper(nums,start,n-2) + nums[n]);
+    }
+}
+*/
+class Solution {
+    int dp[][];
+    public int rob(int[] nums) {
+        if(nums.length == 1)
+            return nums[0];
         
-    for(int i=1; i<n; i++){
-        int  incl = prev2 + arr.get(i);
-        int excl = 0 + prev1;
+        dp = new int[nums.length+1][2];
+        for(int i[] : dp)
+            Arrays.fill(i,-1);
         
-        int ans = Math.max(incl, excl);
-        prev2 = prev1;
-        prev1 = ans;
+        int one = helper(nums,0,nums.length-2,0);
+        int two = helper(nums,1,nums.length-1,1);
         
-       }
-    return prev1;
+        return Math.max(one,two);
+    }
+    
+    public int helper(int nums[],int start,int n,int idx){
+        if(n < start)
+            return 0;
+        if(n == start)
+            return dp[n][idx] = nums[start];
+        if(dp[n][idx] != -1)
+            return dp[n][idx];
+        return dp[n][idx] = Math.max(helper(nums,start,n-1,idx),
+                                     helper(nums,start,n-2,idx) + nums[n]);
     }
 }
