@@ -8,16 +8,20 @@
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
-
-// Slow and fast pointer technoique need to redo
 class Solution {
     public ListNode middleNode(ListNode head) {
-        ListNode slow=head, fast=head;
-        while(fast!=null && fast.next!=null)
+        ListNode ptr = head;
+        int count=0;
+        while(ptr!=null)
         {
-            slow=slow.next;
-            fast = fast.next.next;
+            ptr = ptr.next;
+            count++;
         }
-        return slow;
+        int middle = (int)Math.ceil(count/2);
+        while(middle-->0)
+        {
+            head=head.next;
+        }
+        return head;
     }
 }
