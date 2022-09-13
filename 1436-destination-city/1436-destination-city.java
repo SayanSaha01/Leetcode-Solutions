@@ -7,11 +7,12 @@ class Solution {
             String cityb=paths.get(i).get(1);
             map.put(citya,cityb);
         }
-        String destination = paths.get(0).get(0);
-        while(map.containsKey(destination))
+        String currentcity = paths.get(0).get(0);     //getting the first city then checking if the map contains destination then we get the des
+        while(map.containsKey(currentcity))
         {
-            destination = map.get(destination);
+            currentcity = map.get(currentcity);
         }
+        String destination=currentcity;
         return destination;
     }
 }
