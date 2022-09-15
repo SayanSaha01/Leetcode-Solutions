@@ -1,5 +1,9 @@
+//refer to this solution for understanding 
+//https://leetcode.com/problems/climbing-stairs/discuss/1968090/Java-from-Recursion-to-Bottom-up-(DP)-explained
+
 class Solution {
     public int climbStairs(int n) {
+
         if(n==0)
             return 0;
         if(n==1)
