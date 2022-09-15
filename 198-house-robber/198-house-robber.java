@@ -1,45 +1,38 @@
 /*class Solution {
     public int rob(int[] nums) {
         int n = nums.length;
-        return recursion(nums,n-1);    //we pass n-1 as we will start traversing from the n-1th element in the nums array
+        return recursion(nums,n-1);
     }
-    public int recursion(int[] nums,int n)
+    public int recursion(int[] nums,int idx)
     {
-        if(n==0)
-            return nums[0];
-
-        if(n<0)
+        if(idx==0)
+            return nums[0]; //MATLAB KI HAMNE NUMS[1] NAHI UTHAYA to HUM Nums[0] UTHA SAKTE HAI, else if we had picked nums[1] it would then go to n-2 and index would be -1;
+        if(idx<0)
             return 0;
-        
-        int include = nums[n] + recursion(nums,n-2);
-        int exclude = 0 + recursion(nums,n-1);
-        
-        return Math.max(include,exclude);
+        int ans = nums[idx] + recursion(nums,idx-2);      //this already covers the n==1 case
+        int bns = 0 + recursion(nums,idx-1);
+        return Math.max(ans,bns);
     }
 }*/
-class Solution {
+//RECURSION => MEMOIZATION
+class Solution{
     public int rob(int[] nums) {
         int n = nums.length;
         int[] dp = new int[n+1];
         Arrays.fill(dp,-1);
-        return recursion(nums,n-1,dp);    
-//we pass n-1 as we will start traversing from the n-1th element in the nums array
+        return recursion(nums,n-1,dp);
     }
-    public int recursion(int[] nums,int n,int[] dp)
+    public int recursion(int[] nums,int idx,int[] dp)
     {
-        if(n==0)
-            return nums[0];
-
-        if(n<0)
+        if(idx==0)
+           return nums[0];
+        if(idx<0)
             return 0;
-        
-        if(dp[n]!=-1)
-            return dp[n];
-        
-        int include = nums[n] + recursion(nums,n-2,dp);
-        int exclude = 0 + recursion(nums,n-1,dp);
-        
-        dp[n]= Math.max(include,exclude);
-        return dp[n];      //how we figure out which element to pass in dp[], notice that amongst the parameters passed, only n is changing hence dp[n]
+        if(dp[idx]!=-1)
+            return dp[idx];
+        int include = nums[idx] + recursion(nums,idx-2,dp);
+        int exclude = 0 + recursion(nums,idx-1,dp);
+        dp[idx] = Math.max(include,exclude);
+        return dp[idx];
     }
 }
