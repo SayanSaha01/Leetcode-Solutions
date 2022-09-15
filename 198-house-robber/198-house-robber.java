@@ -40,6 +40,6 @@ class Solution {
         int exclude = 0 + recursion(nums,n-1,dp);
         
         dp[n]= Math.max(include,exclude);
-        return dp[n];
+        return dp[n];      //how we figure out which element to pass in dp[], notice that amongst the parameters passed, only n is changing hence dp[n]
     }
 }
