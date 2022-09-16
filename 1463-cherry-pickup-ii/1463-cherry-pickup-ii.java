@@ -44,7 +44,7 @@ class Solution {
     }
     public static int f(int i1,int j1,int j2,int r,int c,int[][] grid,int[][][] dp){
         if(j1<0 || j1>=c || j2<0 || j2>=c)
-            return (-1)*(int)Math.pow(10,8);
+            return (-1)*Integer.MAX_VALUE;
         if(i1==r-1){
             if(j1==j2)
                 return grid[i1][j1];
@@ -53,7 +53,7 @@ class Solution {
         }
         if(dp[i1][j1][j2]!=-1)
             return dp[i1][j1][j2];
-        int max=-1*(int)Math.pow(10,8);
+        int max=(-1)*Integer.MAX_VALUE;
         for(int dj1=-1;dj1<=1;dj1++){
             for(int dj2=-1;dj2<=1;dj2++){
                 int value=0;
