@@ -1,40 +1,31 @@
 class Solution {
-
+    Boolean mem[][];
     public boolean canPartition(int[] nums) {
-
-        int target = 0;
         int sum = 0;
-        for (int i : nums)    
-            sum += i;
+        int n = nums.length;
         
-        if (sum % 2 != 0)  
-            return false;
+        for(int i : nums) sum+=i;
         
-        target = sum / 2;
-        int[][] temp = new int[nums.length][target + 1];
-        for(int[] row:temp)
-            Arrays.fill(row,-1);
-        boolean ans = get(nums, nums.length - 1, target, temp);
+        if(sum%2!=0) return false;
         
-        return ans;
+        sum /= 2;
+        
+        mem = new Boolean[n+1][sum+1];
+        
+        return subsetSum(nums,0,sum);
     }
-
-    boolean get(int[] nums, int index, int target, int[][] temp) {
-        if (index == 0)    
-            return (target == nums[0]);
+    
+    boolean subsetSum(int[] nums, int pos, int sum){
+        if(sum==0) return true;
         
-        if (temp[index][target] != -1) 
-        {
-            return temp[index][target]==1?true:false;
-        }
-
-        boolean x = get(nums, index - 1, target, temp);
-        boolean y = false;
-        if (target >= nums[index])
-            y = get(nums, index - 1, target - nums[index], temp);
-
-        temp[index][target]=x||y?1:0;
+        else if(pos>=nums.length || sum<0) return false;
         
-        return x || y;
+        if(mem[pos][sum]!=null) 
+            return mem[pos][sum];
+        
+        return mem[pos][sum] = subsetSum(nums,pos+1,sum-nums[pos]) ||
+                                subsetSum(nums,pos+1,sum);
+        
+        
     }
 }
