@@ -1,21 +1,21 @@
-/*//why using Integer.MAX_VALUE throws error, as it itself occupies the highest value so when are trying to return the max in return it will always return Integer.MAX_VALUE and if we use Integer.MIN_VALUE then also it will throw error as we add the val to Integer.MIN_VALUE thereby it disrupts the result
-
+//why using Integer.MAX_VALUE throws error, as it itself occupies the highest value so when are trying to return the max in return it will always return Integer.MAX_VALUE and if we use Integer.MIN_VALUE then also it will throw error as we add the val to Integer.MIN_VALUE thereby it disrupts the result
+/*
 class Solution {
     public int cherryPickup(int[][] grid) {
         int r=grid.length;
-        int c=grid[0].length;
+        int c=grid[0].length;            //we need to pass c-1 as c denotes the number of columns in first row and c-1 is the last row of the first cell whereas if we pass r-1 it will pass the no of rows
         return f(0,0,c-1,r,c,grid);
     }
     public int f(int i1,int j1,int j2,int r,int c,int[][] grid){
         if(j1<0 || j1>=c || j2<0 || j2>=c)
-            return (-1)*Integer.MAX_VALUE;
+            return Integer.MIN_VALUE;
         if(i1==r-1){
             if(j1==j2)
                 return grid[i1][j1];
             else
                 return grid[i1][j1]+grid[i1][j2];
         }
-        int max= (-1)*Integer.MAX_VALUE;
+        int max= Integer.MIN_VALUE;
         for(int dj1=-1;dj1<=1;dj1++){
             for(int dj2=-1;dj2<=1;dj2++){
                 int value=0;
@@ -31,6 +31,7 @@ class Solution {
     }
 }
 */
+
 class Solution {
     public int cherryPickup(int[][] grid) {
         int m=grid.length;
@@ -44,7 +45,7 @@ class Solution {
     }
     public static int f(int i,int j1,int j2,int m,int n,int[][] grid,int[][][] dp){
         if(j1<0 || j1>=n || j2<0 || j2>=n)
-            return (-1)*Integer.MAX_VALUE;
+            return Integer.MIN_VALUE;
         if(i==m-1){
             if(j1==j2)
                 return grid[i][j1];
@@ -53,7 +54,7 @@ class Solution {
         }
         if(dp[i][j1][j2]!=-1)
             return dp[i][j1][j2];
-        int max=(-1)*Integer.MAX_VALUE;
+        int max=Integer.MIN_VALUE;
         for(int dj1=-1;dj1<=1;dj1++){
             for(int dj2=-1;dj2<=1;dj2++){
                 int value=0;
