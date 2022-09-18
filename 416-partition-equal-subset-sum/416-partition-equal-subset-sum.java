@@ -1,35 +1,29 @@
 class Solution {
     public boolean canPartition(int[] nums) {
-        int sum = 0;
+        int sum=0;
         int n = nums.length;
-        
-        for(int i : nums) 
+        for(int i:nums)
+        {
             sum+=i;
-        
-        if(sum%2!=0) 
+        }
+        if(sum%2!=0)       //if the sum isnt even it cant be split into two equal subsets
             return false;
-        
-        sum /= 2;
-        
-        Boolean[][] mem = new Boolean[n][sum+1];
-        return subsetSum(nums,n-1,sum,mem);
+        int target = sum/2;
+        Boolean[][] dp = new Boolean[n][target+1];
+        return memoization(n-1,target,nums,dp);
     }
-    
-    Boolean subsetSum(int[] nums, int pos, int sum,Boolean[][] mem){
-        if(sum==0) 
+    public Boolean memoization(int idx,int target,int[] nums,Boolean[][] dp)
+    {
+        if(idx==0)         //index reaches first element from end
+            return nums[idx]==target;
+        if(target==0)
             return true;
-        
-        if(pos==0)
-            return nums[0]==sum;
-        
-        if(mem[pos][sum]!=null) 
-            return mem[pos][sum];
-        
-        Boolean nottake = subsetSum(nums,pos-1,sum,mem);
+        if(dp[idx][target]!=null)
+            return dp[idx][target];
+        Boolean nottake = memoization(idx-1,target,nums,dp);
         Boolean take = false;
-        if(sum>=nums[pos])
-            take = subsetSum(nums,pos-1,sum-nums[pos],mem);
-        
-        return mem[pos][sum] = take||nottake;
+        if(nums[idx]<=target)
+            take = memoization(idx-1,target-nums[idx],nums,dp);
+        return dp[idx][target] = nottake||take;
     }
 }
