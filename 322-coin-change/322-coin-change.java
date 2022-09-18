@@ -1,76 +1,58 @@
-/*class Solution {
-    public int coinChange(int[] coins, int amount) 
-    {
-        int ans = solve(coins,amount);
-        return ans==Integer.MAX_VALUE?-1:ans;
-            
+/*
+class Solution {
+    public int coinChange(int[] coins, int amount) {
+        int n= coins.length;
+
+        int ans =  minimumElementsUtil(coins, n-1, amount);
+        if(ans >= (int)Math.pow(10,9)) 
+            return -1;
+        return ans;
     }
-    public static int solve(int[] coins,int amount)
+    public int minimumElementsUtil(int[] arr, int ind, int T)
     {
-        if(amount==0)
-            return 0;
-        if(amount<0)
-            return Integer.MAX_VALUE;
-        int min = Integer.MAX_VALUE;
-        for(int i=0;i<coins.length;i++)
-        {
-            int sum = solve(coins,amount-coins[i]);
-            if(sum!=Integer.MAX_VALUE)
-            {
-                min = Math.min(min,1+sum);
-            }
+
+        if(ind == 0){
+            if(T%arr[0] == 0) 
+                return T/arr[0];
+            else 
+                return (int)Math.pow(10,9);
         }
-        return min;
+        int notTaken = 0 + minimumElementsUtil(arr,ind-1,T);
+        int taken = (int)Math.pow(10,9);
+        if(arr[ind] <= T)
+            taken = 1 + minimumElementsUtil(arr,ind,T-arr[ind]);
+        return Math.min(notTaken,taken);
     }
 }
 */
-/*
 class Solution {
-    public int coinChange(int[] coins, int amount) 
-    {
-        int[] dp = new int[amount+1];
-        Arrays.fill(dp,-1);
-        int ans = solve(coins,amount,dp);
-        return ans==Integer.MAX_VALUE?-1:ans;    
+    public int coinChange(int[] coins, int amount) {
+        int n= coins.length;
+
+        int[][] dp = new int[n][amount+1];
+        for(int[] row:dp)
+            Arrays.fill(row,-1);
+        int ans =  minimumElementsUtil(coins, n-1, amount,dp);
+        
+        if(ans >= (int)Math.pow(10,9)) 
+            return -1;
+        return ans;
     }
-    public static int solve(int[] coins,int amount,int[] dp)
+    public int minimumElementsUtil(int[] arr, int ind, int T,int[][] dp)
     {
-        if(amount==0)
-            return 0;
-        if(amount<0)
-            return Integer.MAX_VALUE;
-        if(dp[amount]!=-1)
-            return dp[amount];
-        int min = Integer.MAX_VALUE;
-        for(int i=0;i<coins.length;i++)
-        {
-            int sum = solve(coins,amount-coins[i],dp);
-            if(sum!=Integer.MAX_VALUE)
-            {
-                min = Math.min(min,1+sum);
-            }
+
+        if(ind == 0){
+            if(T%arr[0] == 0) 
+                return T/arr[0];
+            else 
+                return (int)Math.pow(10,9);
         }
-        dp[amount]=min;
-        return dp[amount];
-    }
-}*/
-//TABULATION
-class Solution {
-    public int coinChange(int[] coins, int amount) 
-    {
-        int[] dp = new int[amount+1];
-        Arrays.fill(dp,Integer.MAX_VALUE);
-        dp[0]=0;
-        for(int i=0;i<=amount;i++)
-        {
-            for(int j=0;j<coins.length;j++)
-            {
-                if(i-coins[j]>=0 && dp[i-coins[j]]!=Integer.MAX_VALUE)
-                {
-                    dp[i]=Math.min(dp[i],1+dp[i-coins[j]]);
-                }
-            }
-        }
-        return dp[amount]==Integer.MAX_VALUE?-1:dp[amount];
+        if(dp[ind][T]!=-1)
+            return dp[ind][T];
+        int notTaken = 0 + minimumElementsUtil(arr,ind-1,T,dp);
+        int taken = (int)Math.pow(10,9);
+        if(arr[ind] <= T)
+            taken = 1 + minimumElementsUtil(arr,ind,T-arr[ind],dp);
+        return dp[ind][T]= Math.min(notTaken,taken);
     }
 }
