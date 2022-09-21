@@ -1,0 +1,1 @@
+//m,n denotes the last index of the dp array however we compare st1.charAt(i-1) and str2.charAt(j-1)==0 as m-1 and n-1 denotes the last element of the strings from which we start iterating
