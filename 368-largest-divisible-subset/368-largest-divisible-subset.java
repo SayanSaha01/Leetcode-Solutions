@@ -1,64 +1,32 @@
-/*import java.util.*;
 class Solution {
     public List<Integer> largestDivisibleSubset(int[] nums) {
-        Arrays.sort(nums);
+        ArrayList<Integer> temp = new ArrayList<Integer>();
         int n = nums.length;
+        int max = 0, end = -1;
+        Arrays.sort(nums);
         int[] dp = new int[n];
-        Arrays.fill(dp,1);
         int[] hash = new int[n];
-        Arrays.fill(hash,1);
-        int max=0;
-        int lastindex=0;
-        for(int idx=0;idx<=n-1;idx++)
+        for(int i=0;i<=n-1;i++)
         {
-            for(int prev=0;prev<=idx-1;prev++)
-            {
-                if(nums[idx]%nums[prev]==0 && 1+dp[prev]<dp[idx])
+            dp[i]=1;
+            hash[i]=-1;
+            for(int prev = 0;prev<=i-1;prev++){
+                if(nums[i] % nums[prev]==0 && 1+dp[prev]>dp[i])
                 {
-                    dp[idx] = 1+dp[prev];
-                    hash[idx]=prev;
+                    dp[i] = 1 + dp[prev];
+                    hash[i]=prev;
                 }
             }
-            if(nums[idx]>max)
-            {
-                max = nums[idx];
-                lastindex = idx;
+            if(dp[i]>max){
+                max=dp[i];
+                end=i;
             }
         }
-        List<Integer> res = new ArrayList<>();
-        while (lastindex!=-1) {
-            res.add(nums[lastindex]);
-            lastindex = hash[lastindex];
+        while(end!=-1)
+        {
+            temp.add(nums[end]);
+            end = hash[end];
         }
-        return res;
-    }
-}*/
-public class Solution {
-    public List<Integer> largestDivisibleSubset(int[] nums) {
-        int n = nums.length;
-        int[] count = new int[n];
-        Arrays.fill(count,1);
-        int[] pre = new int[n];
-        Arrays.fill(pre,-1);
-        Arrays.sort(nums);
-        int max = 0, index = -1;
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j <= i-1; j++) {
-                if (nums[i] % nums[j] == 0 && 1 + count[j] > count[i]) {
-                        count[i] = count[j] + 1;
-                        pre[i] = j;
-                    }
-                }
-            if (count[i] > max) {
-                max = count[i];
-                index = i;
-            }
-        }
-        List<Integer> res = new ArrayList<>();
-        while (index != -1) {
-            res.add(nums[index]);
-            index = pre[index];
-        }
-        return res;
+        return temp;
     }
 }
