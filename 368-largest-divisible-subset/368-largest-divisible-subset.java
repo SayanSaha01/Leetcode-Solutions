@@ -37,12 +37,12 @@ public class Solution {
     public List<Integer> largestDivisibleSubset(int[] nums) {
         int n = nums.length;
         int[] count = new int[n];
+        Arrays.fill(count,1);
         int[] pre = new int[n];
+        Arrays.fill(pre,-1);
         Arrays.sort(nums);
         int max = 0, index = -1;
         for (int i = 0; i < n; i++) {
-            count[i] = 1;
-            pre[i] = -1;
             for (int j = 0; j <= i-1; j++) {
                 if (nums[i] % nums[j] == 0 && 1 + count[j] > count[i]) {
                         count[i] = count[j] + 1;
