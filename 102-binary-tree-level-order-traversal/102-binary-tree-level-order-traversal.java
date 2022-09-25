@@ -26,11 +26,13 @@ class Solution {
             int size = queue.size();
             for(int i=0;i<size;i++)
             {
-                if(queue.peek().left!=null)
-                    queue.offer(queue.peek().left);
-                if(queue.peek().right!=null)
-                    queue.offer(queue.peek().right);
-                sublist.add(queue.poll().val);
+                TreeNode node = queue.poll();
+                
+                if(node.left!=null)
+                    queue.offer(node.left);
+                if(node.right!=null)
+                    queue.offer(node.right);
+                sublist.add(node.val);
             }
             list.add(sublist);
         }
