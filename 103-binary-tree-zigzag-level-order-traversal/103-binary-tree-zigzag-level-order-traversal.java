@@ -28,18 +28,19 @@ class Solution {
             List<Integer> sublist = new ArrayList<Integer>(levelnum);
             for(int i=0;i<levelnum;i++)
             {
-                if(queue.peek().left!=null)
+                TreeNode node = queue.poll();
+                if(node.left!=null)
                 {
-                    queue.offer(queue.peek().left);
+                    queue.offer(node.left);
                 }
-                if(queue.peek().right!=null)
+                if(node.right!=null)
                 {
-                    queue.offer(queue.peek().right);
+                    queue.offer(node.right);
                 }
                 if(flag==true)
-                    sublist.add(queue.poll().val);
+                    sublist.add(node.val);
                 else
-                    sublist.add(0,queue.poll().val);
+                    sublist.add(0,node.val);
             }
             flag=!flag;
             wrapList.add(sublist);
