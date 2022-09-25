@@ -15,24 +15,18 @@
  */
 class Solution {
     public boolean isBalanced(TreeNode root) {
-        if(root == null)
-        {
+        if(root==null)
             return true;
-        }
-        int lh = height(root.left);  //will return the max possible height of left subtree
-        int rh = height(root.right);  // will return the max possible height of right subtree
-        return Math.abs(lh - rh) <= 1 && 
-            isBalanced(root.left) && //checking for the left and right subtree whether they are balanced or not, if the left subtree which might consist of another subtree is not balanced then it will return false
-            isBalanced(root.right);  
-        
+        int lh = maxdepth(root.left);   //max height of left subtree
+        int rh = maxdepth(root.right);  //max height of right subtree
+        return (Math.abs(lh-rh)<=1 && 
+           isBalanced(root.left) &&       //checking if the left and right subtree are balanced or not, if the left subtree contains another subtree which isnt balanced that is whose lh-rh>1 then it will return false, for a binary tree to be balanced both its left and right subtree's should be balanced as well as the subtree's of the left and right subtree
+           isBalanced(root.right));
     }
-    
-    public int height(TreeNode root)
+    public int maxdepth(TreeNode root)
     {
-        if(root == null)
-        {
+        if(root==null)
             return 0;
-        }
-        return Math.max(height(root.left) , height(root.right)) + 1;
+        return 1 + Math.max(maxdepth(root.left),maxdepth(root.right));
     }
 }
