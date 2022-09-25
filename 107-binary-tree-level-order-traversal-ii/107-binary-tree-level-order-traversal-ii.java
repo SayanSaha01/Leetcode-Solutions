@@ -23,20 +23,21 @@ class Solution {
         while(!queue.isEmpty())
         {
             List<Integer> sublist = new LinkedList<Integer>();
-            int levelnum=queue.size();
-            for(int i=0;i<levelnum;i++)
+            int size=queue.size();
+            for(int i=0;i<size;i++)
             {
-                if(queue.peek().left!=null)
+                TreeNode node = queue.poll();
+                if(node.left!=null)
                 {
-                    queue.offer(queue.peek().left);
+                    queue.offer(node.left);
                 }
-                if(queue.peek().right!=null)
+                if(node.right!=null)
                 {
-                    queue.offer(queue.peek().right);
+                    queue.offer(node.right);
                 }
-                sublist.add(queue.poll().val);
+                sublist.add(node.val);
             }
-            arr.add(0,sublist);     
+            arr.add(0,sublist);  
         }
         return arr;
     }
