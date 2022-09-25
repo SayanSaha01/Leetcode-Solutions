@@ -1,15 +1,18 @@
-
 class Solution {
-    public int getHeight(TreeNode root) {
-        if (root == null) return 0;
-        return 1 + Math.max(getHeight(root.left),getHeight(root.right));
-    }
-
     public int diameterOfBinaryTree(TreeNode root) {
-        if (root == null) return 0;
-        int d1 = getHeight(root.left) + getHeight(root.right);
-        int d2 = diameterOfBinaryTree(root.left);
-        int d3 = diameterOfBinaryTree(root.right);
-        return Math.max(d1, Math.max(d2, d3));
+        if(root==null)
+            return 0;
+        int leftd = diameterOfBinaryTree(root.left);    //the maximum diameter lies in left sub tree entirely
+        
+        int rightd = diameterOfBinaryTree(root.right); //the maximum diameter lies in right sub tree entirely
+        
+        int curr = height(root.left)+height(root.right);  //the maximum diameter passes through the root node
+        return Math.max(curr,Math.max(leftd,rightd));
+    }
+    public int height(TreeNode root)
+    {
+        if(root==null)
+            return 0;
+        return 1 + Math.max(height(root.left),height(root.right));
     }
 }
