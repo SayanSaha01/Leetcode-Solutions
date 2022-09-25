@@ -15,18 +15,24 @@
  */
 class Solution {
     public boolean isBalanced(TreeNode root) {
-        return dfsheight(root)!=-1;
+        if(root == null)
+        {
+            return true;
+        }
+        int lh = height(root.left);  //will return the max possible height of left subtree
+        int rh = height(root.right);  // will return the max possible height of right subtree
+        return Math.abs(lh - rh) <= 1 && 
+            isBalanced(root.left) && //checking for the left and right subtree whether they are balanced or not, if the left subtree which might consist of another subtree is not balanced then it will return false
+            isBalanced(root.right);  
+        
     }
-    private int dfsheight(TreeNode root)
+    
+    public int height(TreeNode root)
     {
-        if(root==null)
+        if(root == null)
+        {
             return 0;
-        int lh = dfsheight(root.left);
-
-        int rh = dfsheight(root.right);
-
-        if(lh == -1 || rh ==-1 || Math.abs(lh-rh)>1)
-            return -1;
-        return 1+Math.max(lh,rh);
+        }
+        return Math.max(height(root.left) , height(root.right)) + 1;
     }
 }
