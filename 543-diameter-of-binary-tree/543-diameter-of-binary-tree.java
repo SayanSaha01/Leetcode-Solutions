@@ -1,18 +1,21 @@
+/*
+3 cases max diameter occurs in left subtree
+max diameter occurs in right subtree
+max diameter passes through root
+ */
 class Solution {
     public int diameterOfBinaryTree(TreeNode root) {
         if(root==null)
             return 0;
-        int leftd = diameterOfBinaryTree(root.left);    //the maximum diameter lies in left sub tree entirely
-        
-        int rightd = diameterOfBinaryTree(root.right); //the maximum diameter lies in right sub tree entirely
-        
-        int curr = height(root.left)+height(root.right);  //the maximum diameter passes through the root node
-        return Math.max(curr,Math.max(leftd,rightd));
+        int maxleftdia = diameterOfBinaryTree(root.left);
+        int maxrightdia = diameterOfBinaryTree(root.right);
+        int curr = maxheight(root.left) + maxheight(root.right);
+        return Math.max(curr,Math.max(maxleftdia,maxrightdia));
     }
-    public int height(TreeNode root)
+    public int maxheight(TreeNode root)
     {
         if(root==null)
             return 0;
-        return 1 + Math.max(height(root.left),height(root.right));
+        return 1+Math.max(maxheight(root.left),maxheight(root.right));
     }
 }
