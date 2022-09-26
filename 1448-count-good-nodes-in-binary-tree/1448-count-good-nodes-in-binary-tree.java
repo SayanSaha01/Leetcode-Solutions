@@ -13,31 +13,20 @@
  *     }
  * }
  */
-/*3 cases arriving
-root to root = 1 way
-finding good nodes in left subtree 
-finding good nodes in right subtree*/
 class Solution {
     public int goodNodes(TreeNode root) {
-        int c=1;
-        if(root==null)
-            return 0;
-        c+=count(root.left,root.val);
-        c+=count(root.right,root.val);
-        return c;
+        return 1+count(root.left,root.val)+count(root.right,root.val);
     }
-    public int count(TreeNode root,int curmax)
+    public int count(TreeNode root,int currmax)
     {
-        int amount = 0;
+        int amount=0;
         if(root==null)
             return 0;
-        if(root.val>=curmax)
+        if(root.val>=currmax)
         {
             amount++;
-            curmax=root.val;
+            currmax=root.val;
         }
-        amount+=count(root.left,curmax);
-        amount+=count(root.right,curmax);
-        return amount;
+        return amount+count(root.left,currmax)+count(root.right,currmax);
     }
 }
