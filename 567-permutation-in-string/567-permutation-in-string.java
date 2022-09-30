@@ -1,27 +1,21 @@
 class Solution {
     public boolean checkInclusion(String s1, String s2) {
-        if(s1.length() > s2.length()) return false;
-        
-        int[] arr1 = new int[26];
-        int[] arr2 = new int[26];
-        
-        for(int i = 0; i < s1.length(); i++){
-            arr1[s1.charAt(i) - 'a']++;
-            arr2[s2.charAt(i) - 'a']++;
+        Map<Character, Integer> map1 = new HashMap<>();
+    for (char c:s1.toCharArray()){
+        map1.put(c, map1.getOrDefault(c, 0)+1);
+    }
+    int i = 0, j = s1.length()-1;
+    while (j<s2.length()){
+        Map<Character, Integer> curr = new HashMap<>();
+        for (int a=i;a<=j;a++){
+            curr.put(s2.charAt(a), curr.getOrDefault(s2.charAt(a), 0)+1);
         }
-        
-        if(Arrays.equals(arr1, arr2)) return true;
-        
-        int front = 0;
-        int back = s1.length();
-        while(back < s2.length()){
-            arr2[s2.charAt(front) - 'a']--;
-            arr2[s2.charAt(back) - 'a']++;
-            
-            if(Arrays.equals(arr1, arr2)) return true;
-            front++;
-            back++;
+        if (curr.equals(map1)){
+            return true;
         }
-        return false;
+        i++;
+        j++;
+    }
+    return false;
     }
 }
