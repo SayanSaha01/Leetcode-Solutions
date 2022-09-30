@@ -1,84 +1,50 @@
-/*
 class Solution {
     public List<Integer> findAnagrams(String s, String p) {
-    int freq1[] = new int[26];
-    int freq2[] = new int[26];
-    List<Integer> list = new ArrayList<>();
-    
-    if(s.length()<p.length())
-        return list;
-    
-    for(int i=0; i<p.length(); i++){
-        freq1[s.charAt(i)-'a']++;
-        freq2[p.charAt(i)-'a']++;
-    }
- 
-    int start=0;
-    int end=p.length();
-    
-    if(Arrays.equals(freq1,freq2))
-        list.add(start);
-    
-    while(end<s.length()){
+        List<Integer> output = new ArrayList<Integer>();
+        int start = 0;
+        int end = p.length()-1;
+        if(s.length()<p.length() || start>end)
+            return output;
+        HashMap<Character,Integer> smap = new HashMap<>();
+        HashMap<Character,Integer> pmap = new HashMap<>();
         
-        freq1[s.charAt(start)-'a']--;
-        freq1[s.charAt(end)-'a']++;
-        
-        if(Arrays.equals(freq1,freq2))
-           list.add(start+1);
+        for(int i=0;i<p.length();i++)
+        {
+            char ch = p.charAt(i);
+            pmap.put(ch,pmap.getOrDefault(ch,0)+1);
+        }
+        for(int i=0;i<=end;i++)
+        {
+            char ch = s.charAt(i);
+            smap.put(ch,smap.getOrDefault(ch,0)+1);
+        }
+        if(smap.equals(pmap))
+            output.add(start);
         
         start++;
         end++;
-    }
-    return list; 
-    }
-}
-*/
-class Solution {
-  public List<Integer> findAnagrams(String s, String p) {
-        int st = 0;
-        int e = p.length() -1;
-        List<Integer> ans = new ArrayList<Integer>();
-        if(p.length() > s.length() || st > e) return ans;
-       
-        HashMap<Character, Integer> hms = new HashMap<>();
-        HashMap<Character, Integer> hmp = new HashMap<>();
-
-        for(int i = 0; i < p.length(); i++){
-           char ch = p.charAt(i);
-           hmp.put(ch, hmp.getOrDefault(ch, 0) + 1);
-        }
         
-        
-        for(int i = 0; i <=e ; i++){
-           char ch = s.charAt(i);
-           hms.put(ch, hms.getOrDefault(ch, 0) + 1);
-        }
-        
-        if(hms.equals(hmp))
-            ans.add(st);
-        
-         st++; e++;     
-        while(e < s.length()){
-        
-            // add key for e
-            char ch = s.charAt(e);
-            hms.put(ch, hms.getOrDefault(ch, 0) + 1);
+        while(end<s.length())
+        {
+            //add key at end
+            char ch = s.charAt(end);
+            smap.put(ch,smap.getOrDefault(ch,0)+1);
             
-            //remove key for st
-            ch = s.charAt(st-1);
-            if(hms.containsKey(ch)){
-               hms.put(ch, hms.get(ch) - 1);
+            //remove key at start
+            ch = s.charAt(start-1); //as before entering the while loop we do start++
+            if(smap.containsKey(ch))
+            {
+                smap.put(ch,smap.get(ch)-1);
                 
-              if(hms.get(ch) == 0)
-                  hms.remove(ch);
+                if(smap.get(ch)==0)
+                    smap.remove(ch);
             }
-                    
-            if(hms.equals(hmp))   ans.add(st);
+            if(smap.equals(pmap))
+               output.add(start);
             
-            st++; e++;
+            start++;
+            end++;
         }
-        
-        return ans;
+        return output;
     }
 }
