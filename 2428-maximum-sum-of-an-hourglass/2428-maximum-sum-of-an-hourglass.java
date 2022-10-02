@@ -1,6 +1,6 @@
 class Solution {
     public int maxSum(int[][] grid) {
-        int max=Integer.MIN_VALUE;
+        int max=0;
         for(int i=0;i<grid.length-2;i++)
         {
             for(int j=0;j<grid[i].length-2;j++)
