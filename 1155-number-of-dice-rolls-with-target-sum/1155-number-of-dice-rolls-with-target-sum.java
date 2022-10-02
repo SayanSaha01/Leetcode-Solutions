@@ -18,25 +18,24 @@ class Solution {
 }
 */
 class Solution {
-	int MOD = 1_000_000_007;
-
-	public int numRollsToTarget(int n, int k, int target) {
-		Integer[][] memo = new Integer[n + 1][target + 1];
-		return helper(n, k, target, memo);
-	}
-
-	private int helper(int n, int k, int target, Integer[][] memo) {
-		if (n == 0 || target < 0)
-			return target == 0 ? 1 : 0;
-
-		if (memo[n][target] != null)
-			return memo[n][target];
-
-		int ways = 0;
-
-		for (int i = 1; i <= k; i++)
-			ways = (ways + helper(n - 1, k, target - i, memo)) % MOD;
-
-		return memo[n][target] = ways;
-	}
+    static int MOD = 1_000_000_007;
+    public int numRollsToTarget(int n, int k, int target) {
+        int[][] dp = new int[n+1][target+1];
+        for(int[] row:dp)
+            Arrays.fill(row,-1);
+        return target(n,k,target,dp);
+    }
+    public int target(int n,int k,int target,int[][] dp)
+    {
+        if(n==0 || target<0) 
+            return target==0?1:0;
+        if(dp[n][target]!=-1)
+            return dp[n][target];
+        int ways=0;
+        for(int i=1;i<=k;i++)
+        {
+            ways = (ways+target(n-1,k,target-i,dp))%MOD;
+        }
+        return dp[n][target]=ways;
+    }
 }
