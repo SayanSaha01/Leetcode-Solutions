@@ -12,7 +12,7 @@ class Solution {
     public ListNode sortList(ListNode head) {
         if(head==null)
             return null; 
-        PriorityQueue<ListNode> pq = new PriorityQueue<ListNode>((a,b)->Integer.compare(a.val, b.val));
+        PriorityQueue<ListNode> pq = new PriorityQueue<ListNode>((a,b)->a.val-b.val);
         ListNode node=head;
         while(node!=null){
            pq.add(node);
