@@ -1,14 +1,23 @@
 class Solution {
     public boolean isPalindrome(String s) {
-        s = s.replaceAll("[^a-zA-Z0-9]","");   //output AmanaplanacanalPanama
-        s = s.toLowerCase();
-        char[] ch = s.toCharArray();
-        StringBuilder sb = new StringBuilder();
-        for(int i=(ch.length-1);i>=0;i--)
+        int left = 0;
+        int right = s.length()-1;
+        while(left<right)
         {
-            sb.append(ch[i]);
+            char c1 = s.charAt(left);
+            char c2 = s.charAt(right);
+            if(!Character.isLetterOrDigit(c1))
+                left++;
+            else if(!Character.isLetterOrDigit(c2))
+                right--;
+            else
+            {
+                if(Character.toLowerCase(c1)!=Character.toLowerCase(c2))
+                    return false;
+                left++;
+                right--;
+            }
         }
-        String rev = sb.toString();
-        return rev.equals(s);
+        return true;
     }
 }
