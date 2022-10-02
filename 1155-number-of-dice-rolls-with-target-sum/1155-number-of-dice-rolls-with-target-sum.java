@@ -34,7 +34,8 @@ class Solution {
         int ways=0;
         for(int i=1;i<=k;i++)
         {
-            ways = (ways+target(n-1,k,target-i,dp))%MOD;
+            ways+=target(n-1,k,target-i,dp);
+            ways=ways%MOD;
         }
         return dp[n][target]=ways;
     }
