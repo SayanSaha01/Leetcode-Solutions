@@ -1,0 +1,42 @@
+/*
+class Solution {
+    static int MOD = 1_000_000_007;
+    public int numRollsToTarget(int n, int k, int target) {
+        return target(n,k,target);
+    }
+    public int target(int n,int k,int target)
+    {
+        if(n==0 || target<0)            //if n==0, means we have extinguished all the possible ways and if in such case if the target is 0 then we return 1,as it indicates a possible way. We are also exploring the option if target<0 and in all other cases  we return 0 
+            return target==0?1:0;
+        int ways=0;
+        for(int i=1;i<=k;i++)    //since k denotes the number appearing on the face of the dice, we will be iterating the loop from 1 to k that is figuring out all the possible sum combinations that render the target
+        {
+            ways+=target(n-1,k,target-i)%MOD;
+        }
+        return ways;
+    }
+}
+*/
+class Solution {
+	int MOD = 1_000_000_007;
+
+	public int numRollsToTarget(int n, int k, int target) {
+		Integer[][] memo = new Integer[n + 1][target + 1];
+		return helper(n, k, target, memo);
+	}
+
+	private int helper(int n, int k, int target, Integer[][] memo) {
+		if (n == 0 || target < 0)
+			return target == 0 ? 1 : 0;
+
+		if (memo[n][target] != null)
+			return memo[n][target];
+
+		int ways = 0;
+
+		for (int i = 1; i <= k; i++)
+			ways = (ways + helper(n - 1, k, target - i, memo)) % MOD;
+
+		return memo[n][target] = ways;
+	}
+}
