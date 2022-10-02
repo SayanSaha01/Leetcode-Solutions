@@ -20,7 +20,7 @@ class Solution {
             node= node.next;
         }
         node = head;
-        while(node != null)
+        while(!pq.isEmpty())
         {
             node.val = pq.poll();
             node = node.next;
