@@ -2,20 +2,22 @@ class Solution {
     public int[] arrayRankTransform(int[] arr) {
         int[] brr = new int[arr.length];
         HashMap<Integer,Integer> map = new HashMap<Integer,Integer>();
-        for(int i=0;i<arr.length;i++)
+        PriorityQueue<Integer> pq = new PriorityQueue<Integer>();
+        for(int i=0;i<arr.length;i++)  //0(n)
         {
-            brr[i]=arr[i];   
+            pq.add(arr[i]);  
         }
-        Arrays.sort(brr);
+        //0(nlogn)
         int count=1;
-        for(int i=0;i<brr.length;i++)
+        while(!pq.isEmpty())
         {
-            if(!map.containsKey(brr[i]))
+            int ele = pq.poll();
+            if(!map.containsKey(ele))
             {
-                map.put(brr[i],count++);
+                map.put(ele,count++);
             }
         }
-        for(int i=0;i<brr.length;i++)
+        for(int i=0;i<arr.length;i++)
         {
             arr[i]=map.get(arr[i]);
         }
