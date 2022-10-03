@@ -17,13 +17,13 @@ class Solution {
             {
                 idx=mid;
             }
-            if(target>arr[mid])
+            if(arr[mid]>=target)
             {
-                start = mid+1;
+                end = mid-1;
             }
             else
             {
-                end = mid-1;
+                start = mid+1;
             }
         }
         return idx;
@@ -40,13 +40,13 @@ class Solution {
             {
                 idx=mid;
             }
-            if(target>=arr[mid])
+            if(arr[mid]>target)
             {
-                start = mid+1;
+                end = mid-1;
             }
             else
             {
-                end = mid-1;
+                start = mid+1;
             }
         }
         return idx;
