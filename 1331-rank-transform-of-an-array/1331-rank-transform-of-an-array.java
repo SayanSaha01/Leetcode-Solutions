@@ -7,7 +7,6 @@ class Solution {
         {
             pq.add(arr[i]);  
         }
-        //0(nlogn)
         int count=1;
         while(!pq.isEmpty())
         {
