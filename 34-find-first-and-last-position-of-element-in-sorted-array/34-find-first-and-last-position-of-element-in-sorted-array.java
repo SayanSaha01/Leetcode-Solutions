@@ -1,62 +1,54 @@
 class Solution {
     public int[] searchRange(int[] nums, int target) {
         int[] result = new int[2];
-        result[0]=firstocc(nums,target);
-        result[1] = lastocc(nums,target);
+        result[0] = lb(nums,target);
+        result[1] = ub(nums,target);
         return result;
     }
-    private int firstocc(int[] nums,int x)
+    public int lb(int arr[],int target)
     {
-        int low=0;
-        int high=nums.length-1;
-        int idx;
-        int n=nums.length;
-        while(low<=high)
+        int start = 0;
+        int end = arr.length-1;
+        int idx=-1;
+        while(start<=end)
         {
-            int mid=(low+high)/2;
-            if(nums[mid]>x)
+            int mid = start + (end-start)/2;
+            if(arr[mid]==target)
             {
-                high = mid-1;
+                idx=mid;
             }
-            else if (nums[mid]<x)
+            if(target>arr[mid])
             {
-                low=mid+1;
+                start = mid+1;
             }
             else
             {
-                if(mid==0||nums[mid]!=nums[mid-1])
-                    return mid;
-                else
-                    high=mid-1;
+                end = mid-1;
             }
         }
-        return -1;
+        return idx;
     }
-    private int lastocc(int[] nums,int x)
+    public int ub(int arr[],int target)
     {
-        int low=0;
-        int high=nums.length-1;
-        int n=nums.length;
-        int idx;
-        while(low<=high)
+        int start = 0;
+        int end = arr.length-1;
+        int idx=-1;
+        while(start<=end)
         {
-            int mid=(low+high)/2;
-            if(nums[mid]>x)
+            int mid = start + (end-start)/2;
+            if(arr[mid]==target)
             {
-                high = mid-1;
+                idx=mid;
             }
-            else if (nums[mid]<x)
+            if(target>=arr[mid])
             {
-                low=mid+1;
+                start = mid+1;
             }
             else
             {
-                if(mid==n-1||nums[mid]!=nums[mid+1])
-                    return mid;
-                else
-                    low=mid+1;
+                end = mid-1;
             }
         }
-        return -1;
+        return idx;
     }
 }
