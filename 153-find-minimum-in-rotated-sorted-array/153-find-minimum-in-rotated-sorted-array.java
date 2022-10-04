@@ -13,15 +13,23 @@ class Solution {
             if(nums[start]<=nums[mid])
             {
                 if(nums[start]<min)
+                {
                     min=nums[start];
-                start=mid+1;
+                }
+                else{
+                    start=mid+1;
+                }
             }
             //checking if the right side is sorted
             else
             {
                 if(nums[mid]<min)
+                {
                     min = nums[mid];
-                end = mid-1;
+                }
+                else{
+                    end = mid-1;
+                }
             }
         }
         return min;
