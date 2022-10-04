@@ -1,25 +1,35 @@
 class Solution {
-    public int search(int[] nums, int target) {
-        int low = 0;
-        int high=nums.length-1;
-        while(low<=high)
+    public int search(int[] arr, int target) {
+        int start = 0;
+        int end = arr.length-1;
+        while(start<=end)
         {
-            int mid=(low+high)/2;
-            if(nums[mid]==target)
+            int mid = start + (end-start)/2;
+            if(arr[mid]==target)
                 return mid;
-            if(nums[low]<=nums[mid])
+            // left subpart is sorted and right is not
+            if(arr[start]<=arr[mid])
             {
-                if(nums[low]<=target&&nums[mid]>target)
-                    high=mid-1;
+                if(target>=arr[start] && target<arr[mid])
+                {
+                    end = mid-1;
+                }
                 else
-                    low=mid+1;
+                {
+                    start = mid + 1;
+                }
             }
-            if(nums[mid]<=nums[high])
+            //right subpart is sorted and left is not
+            else
             {
-                if((target>nums[mid])&&(target<=nums[high]))
-                    low=mid+1;
+                if(target>arr[mid] && target<=arr[end])
+                {
+                    start = mid + 1;
+                }
                 else
-                    high=mid-1;
+                {
+                    end = mid-1;
+                }
             }
         }
         return -1;
