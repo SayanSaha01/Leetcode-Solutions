@@ -1,29 +1,29 @@
 class Solution {
-    public int peakIndexInMountainArray(int[] arr) {
-       
-        //If array has no elements
-        if(arr.length == 0){
+    public int peakIndexInMountainArray(int[] nums) {
+        if(nums==null || nums.length<1)
             return -1;
+        if(nums.length==1)
+            return 0; // if single element present then that's the answer
+		
+		//we are handling the first element and last element separately as it is given nums[-1] = nums[n] = -∞ 
+        if(nums[0]>nums[1])
+            return 0;
+        if(nums[nums.length-1]>nums[nums.length-2])
+            return nums.length-1;
+        
+        int start = 1;
+        int end = nums.length-2;
+        while(start<=end)
+        {
+            int mid = start+(end-start)/2;
+            
+            if(nums[mid] > nums[mid-1] && nums[mid] >nums[mid+1])
+                return mid;
+            else if(nums[mid+1]>nums[mid])
+                start = mid+1;
+            else
+                end = mid-1;
         }
-        
-        int start = 0;
-        int end = arr.length -1;
-        int target = 0;
-        
-        while(start <= end){
-        
-            int mid = (end+start)/2;
-            //Comparing (mid) with (mid+1) 
-            if(arr[mid] > arr[mid + 1])
-            {
-                if(arr[mid] > arr[mid - 1]) 
-                    return mid;
-                else 
-                    end = mid - 1;
-            }
-            else if (arr[mid] < arr[mid + 1]) 
-                start = mid + 1;
-        }
-        return 0;
+        return -1;
     }
 }
