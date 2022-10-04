@@ -8,7 +8,7 @@ class Solution {
             if(arr[mid]==target)
                 return mid;
             // left subpart is sorted and right is not
-            if(arr[start]<=arr[mid])
+            else if(arr[start]<=arr[mid])
             {
                 if(target>=arr[start] && target<arr[mid])
                 {
