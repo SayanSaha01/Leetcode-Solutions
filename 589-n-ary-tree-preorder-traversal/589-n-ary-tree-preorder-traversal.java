@@ -18,17 +18,16 @@ class Node {
 */
 
 class Solution {
-    List<Integer> res = new ArrayList<>();
+    List<Integer> list = new ArrayList<Integer>();
     public List<Integer> preorder(Node root) {
-        if(root == null)
-            return res;
-			
-        res.add(root.val);
-			
-		//root.children is a list, so we can iterate over it
-        for(int i = 0; i < root.children.size(); i++){
+        if(root==null)
+            return list;
+        list.add(root.val);
+        //root.children is a List 
+        for(int i=0;i<root.children.size();i++)
+        {
             preorder(root.children.get(i));
         }
-        return res;
+        return list;
     }
 }
