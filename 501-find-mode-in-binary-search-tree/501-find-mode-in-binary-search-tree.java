@@ -14,9 +14,10 @@
  * }
  */
 class Solution {
-    HashMap<Integer,Integer> map = new HashMap<Integer,Integer>();
+    
     public int[] findMode(TreeNode root) {
-        dfs(root);
+        HashMap<Integer,Integer> map = new HashMap<Integer,Integer>();
+        dfs(root,map);
         int max=0;
         for(int i:map.values())
         {
@@ -37,14 +38,14 @@ class Solution {
         }
         return arr;
     }
-    public void dfs(TreeNode root)
+    public void dfs(TreeNode root,HashMap<Integer,Integer> map)
     {
         if(root==null)
             return;
         
         map.put(root.val,map.getOrDefault(root.val,0)+1);
            
-        dfs(root.left);
-        dfs(root.right);
+        dfs(root.left,map);
+        dfs(root.right,map);
     }
 }
