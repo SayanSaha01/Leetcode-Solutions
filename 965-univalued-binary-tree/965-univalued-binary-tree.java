@@ -14,20 +14,21 @@
  * }
  */
 class Solution {
+    HashSet<Integer> set = new HashSet<Integer>();
     public boolean isUnivalTree(TreeNode root) {
-        HashSet<Integer> set = new HashSet<Integer>();
-        dfs(root,set);
+        
+        dfs(root);
         if(set.size()>1)
             return false;
         return true;
     }
-    public void dfs(TreeNode root,HashSet<Integer> set)
+    public void dfs(TreeNode root)
     {
         if(root==null)
             return;
         set.add(root.val);
         
-        dfs(root.left,set);
-        dfs(root.right,set);
+        dfs(root.left);
+        dfs(root.right);
     }
 }
