@@ -20,12 +20,12 @@ class Solution {
         {
             inordermap.put(inorder[i],i);
         }
-        TreeNode root = buildtree(preorder,0,preorder.length-1,
+        TreeNode root = build(preorder,0,preorder.length-1,
                                   inorder,0,inorder.length-1,
                                   inordermap);
         return root;   
     }
-    public TreeNode buildtree(int[] preorder,int prestart,int preend,
+    public TreeNode build(int[] preorder,int prestart,int preend,
                               int[] inorder,int instart,int inend,
                               HashMap<Integer,Integer> inmap)
     {
@@ -38,10 +38,10 @@ class Solution {
         
         int numleft = rootindex-instart;       //figuring out the number of elements to the left of the root in inorder array
             
-        root.left = buildtree(preorder,prestart+1,prestart+numleft,
+        root.left = build(preorder,prestart+1,prestart+numleft,
                               inorder,instart,rootindex-1,inmap);
         
-        root.right = buildtree(preorder,prestart+numleft+1,preend,
+        root.right = build(preorder,prestart+numleft+1,preend,
                               inorder,rootindex+1,inend,inmap);
         return root;
     }
