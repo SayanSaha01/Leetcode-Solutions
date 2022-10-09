@@ -7,6 +7,7 @@
 // this goes on until we encounter the largest element
 // (worst case the largest element is the first element)
 //therefore we are sure to get atleast one peak element to the left of mid in case nums[mid-1] > num[mid]
+/*
     
     //Time Complexity: O(log(n))
 	//Space Complexity: O(1)
@@ -37,5 +38,25 @@
                 end = mid-1;
         }
         return -1;
+    }
+}
+*/
+    class Solution {
+    public int findPeakElement(int[] arr) {
+        int start = 0;
+        int end = arr.length-1;
+        while(start<end)
+        {
+            int mid = start + (end-start)/2;
+            if(arr[mid]<arr[mid+1])
+            {
+                start = mid+1;
+            }
+            else  //this indicates that the peak element may lie on the second line or else it might be the peak element itself
+            {
+                end = mid;      //question is in all the questions we do mid-1, why not in this case. Answer-> if we do mid-1 it will go back to the first line but if we are in the else loop we are traversing through the 2nd line and it has to be on the second line
+            }
+        }
+        return start;
     }
 }
