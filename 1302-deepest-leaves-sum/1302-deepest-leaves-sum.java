@@ -14,29 +14,28 @@
  * }
  */
 class Solution {
-    int sum=0;
+    int sum = 0;
     public int deepestLeavesSum(TreeNode root) {
-        int maxdepth = maxdepth(root);
-        deepestsum(root,1,maxdepth);
+        if(root==null)
+            return 0;
+        int depth = maxdepth(root);
+        deepestsum(root,1,depth);
         return sum;
+    }
+    public void deepestsum(TreeNode root,int curr,int depth)
+    {
+        if(root==null)
+            return;
+        if(curr==depth)
+            sum+=root.val;
+        deepestsum(root.left,curr+1,depth);
+        deepestsum(root.right,curr+1,depth);
     }
     public int maxdepth(TreeNode root)
     {
         if(root==null)
             return 0;
-        return 1 + Math.max(maxdepth(root.left),maxdepth(root.right));
-    }
-    public void deepestsum(TreeNode root,int curr,int maxdepth)
-    {
-        if(root!=null)
-        {
-            if(curr==maxdepth)
-            {
-                sum+=root.val;
-            }
-            deepestsum(root.left,curr+1,maxdepth);
-            deepestsum(root.right,curr+1,maxdepth);
-        }
-        
+        return 1 + Math.max(maxdepth(root.left),
+                            maxdepth(root.right));
     }
 }
