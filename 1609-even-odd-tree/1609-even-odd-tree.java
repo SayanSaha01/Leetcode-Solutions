@@ -20,20 +20,26 @@ class Solution {
         Queue<TreeNode> q = new LinkedList();
         q.add(root);
         int level=0;
-        while(q.size() > 0) {
+        while(!q.isEmpty()) {
             int size = q.size();
-            
-            int prev = level%2==0 ? Integer.MIN_VALUE : Integer.MAX_VALUE; // init preVal based on level even or odd
-			while(size-- > 0) 
+            //incrementing level at this stage will throw wrong answer as it still hasnt evaluated for the 0th level and level++ wil directly enable it to start evaluating from 1st level
+            int prev = level%2==0 ? Integer.MIN_VALUE : Integer.MAX_VALUE; 
+            // prev based on level even or odd
+			for(int i=0;i<size;i++) 
             { // level by level
-                root = q.poll();
-                if(level%2==0 && (root.val % 2 == 0 || root.val <= prev)) 
-                    return false; // invalid case on even level
-                if(level%2!=0 && (root.val % 2 == 1 || root.val >= prev)) 
-                    return false; // invalid case on odd level
-                prev = root.val; // update the prev value
-                if(root.left != null) q.add(root.left); // add left child if exist
-                if(root.right != null) q.add(root.right); // add right child if exist
+                TreeNode node = q.poll();
+                if(level%2==0 && (node.val%2 == 0 || node.val <= prev)) 
+                    return false; 
+        // incase of even level, values should be strictly increasing, and at een levels, prev is initialised to Integer.MIN_VALUES os by comparing with node.val, node.val should be greater than prev but if node.val<=prev then return false
+        // false if value at even level is even or not strictly increasing
+                if(level%2!=0 && (node.val % 2 != 0 || node.val >= prev)) 
+                    return false; 
+        // false if value at odd level is odd or not strictly decreasing
+                prev = node.val; // update the prev value
+                if(node.left != null) 
+                    q.add(node.left); // add left child if exist
+                if(node.right != null) 
+                    q.add(node.right); // add right child if exist
             }
             level++;
         }
