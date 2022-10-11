@@ -29,10 +29,8 @@ class Solution {
             return true;
         if(r1==null || r2==null)
             return false;
-        
-        if(r1.val!=r2.val)
-            return false;
-        
-        return issame(r1.left,r2.left) && issame(r1.right,r2.right);
+        return (r1.val==r2.val) && 
+                issame(r1.left,r2.left) && 
+                issame(r1.right,r2.right);
     }
 }
