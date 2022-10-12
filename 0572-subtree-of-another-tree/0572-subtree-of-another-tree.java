@@ -14,23 +14,23 @@
  * }
  */
 class Solution {
-    public boolean isSubtree(TreeNode root, TreeNode subroot) {
-        if(subroot==null)
-            return true;
-        if(root==null)
+    public boolean isSubtree(TreeNode root, TreeNode subRoot) {
+        if(root==null)      //root cannot be null, as if the root is null and the subroot has some address then how can the subroot be a subtree of root
             return false;
-        return issame(root,subroot) || 
-               isSubtree(root.left,subroot) || 
-               isSubtree(root.right,subroot);
+        if(subRoot==null)
+            return true;     //subroot can be null and still be a subtree as null is a subtree of every tree
+        return same(root,subRoot) || 
+               isSubtree(root.left,subRoot) || 
+               isSubtree(root.right,subRoot);
     }
-    public boolean issame(TreeNode r1, TreeNode r2)
+    public boolean same(TreeNode root,TreeNode subroot)
     {
-        if(r1==null && r2==null)
+        if(root==null && subroot==null)   
             return true;
-        if(r1==null || r2==null)
+        if(root==null || subroot==null)
             return false;
-        return (r1.val==r2.val) && 
-                issame(r1.left,r2.left) && 
-                issame(r1.right,r2.right);
+        return root.val==subroot.val && 
+               same(root.left,subroot.left) && 
+               same(root.right,subroot.right);
     }
 }
