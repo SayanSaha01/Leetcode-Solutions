@@ -8,7 +8,6 @@ class Solution {
         }
         if(r>=Integer.MIN_VALUE && r<=Integer.MAX_VALUE)
             return (int)r;
-        else
-            return 0;
+        return 0;
     }
 }
