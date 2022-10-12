@@ -19,18 +19,18 @@ class Solution {
             return false;
         if(subRoot==null)
             return true;     //subroot can be null and still be a subtree as null is a subtree of every tree
-        return same(root,subRoot) || 
+        return check(root,subRoot) ||    
                isSubtree(root.left,subRoot) || 
-               isSubtree(root.right,subRoot);
+               isSubtree(root.right,subRoot); //either of the three function calls need to be true, in that case we can say that there exists a subroot
     }
-    public boolean same(TreeNode root,TreeNode subroot)
+    public boolean check(TreeNode root,TreeNode subroot)
     {
         if(root==null && subroot==null)   
             return true;
         if(root==null || subroot==null)
             return false;
         return root.val==subroot.val && 
-               same(root.left,subroot.left) && 
-               same(root.right,subroot.right);
+               check(root.left,subroot.left) && 
+               check(root.right,subroot.right);
     }
 }
