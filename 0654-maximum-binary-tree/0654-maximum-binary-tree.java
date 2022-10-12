@@ -15,17 +15,17 @@
  */
 class Solution {
     public TreeNode constructMaximumBinaryTree(int[] nums) {
-        int left = 0;
-        int right = nums.length-1;
-        return buildtree(nums,left,right);
+        int start = 0;
+        int end = nums.length-1;
+        return buildtree(nums,start,end);
     }
-    public int findmax(int[] nums,int left,int right)
+    public int findmax(int[] nums,int start,int end)
     {
-        int maxindex=0;
         int max = Integer.MIN_VALUE;
-        for(int i=left;i<=right;i++)
+        int maxindex = 0;
+        for(int i=start;i<=end;i++)
         {
-            if(nums[i] > max)
+            if(nums[i]>max)
             {
                 max=nums[i];
                 maxindex=i;
@@ -33,17 +33,16 @@ class Solution {
         }
         return maxindex;
     }
-    public TreeNode buildtree(int[] nums,int left,int right)
+    public TreeNode buildtree(int[] nums,int start,int end)
     {
-        if(left>right){
+        if(start>end)
             return null;
-        }
-        int maxindex = findmax(nums,left,right);
-        TreeNode root = new TreeNode(nums[maxindex]);
+        int index = findmax(nums,start,end);
         
-        root.left = buildtree(nums,left,maxindex-1);
-        root.right = buildtree(nums,maxindex+1,right);
+        TreeNode node = new TreeNode(nums[index]);
+        node.left = buildtree(nums,start,index-1);
+        node.right = buildtree(nums,index+1,end);
         
-        return root;
+        return node;
     }
 }
