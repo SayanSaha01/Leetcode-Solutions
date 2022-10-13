@@ -14,19 +14,20 @@
  * }
  */
 class Solution {
+    List<String> paths = new ArrayList<String>();
     public List<String> binaryTreePaths(TreeNode root) {
-        ArrayList<String> list = new ArrayList<String>();
         if(root!=null)
-            paths(root,"",list);
-        return list;
+           func(root,"");
+        return paths;
     }
-    public void paths(TreeNode root,String s,ArrayList<String> list)
+    public void func(TreeNode root,String s)
     {
         if(root.left==null && root.right==null)
-            list.add(s + root.val);
+            paths.add(s+root.val);
         if(root.left!=null)
-            paths(root.left,s + root.val + "->",list);
+            func(root.left,s+root.val+"->");
         if(root.right!=null)
-            paths(root.right,s + root.val + "->",list);
+            func(root.right,s+root.val+"->");
+            
     }
 }
