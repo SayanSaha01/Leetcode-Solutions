@@ -5,8 +5,8 @@ class Solution {
         int sum=0;
         for(int i=0;i<gain.length;i++)
         {
-            arr[i+1]=sum+gain[i];
-            sum=arr[i+1];
+            arr[i+1] = sum + gain[i];
+            sum = arr[i+1];
         }
         Arrays.sort(arr);
         return arr[arr.length-1];
