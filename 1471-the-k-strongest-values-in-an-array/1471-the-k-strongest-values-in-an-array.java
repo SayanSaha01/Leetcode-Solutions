@@ -2,7 +2,7 @@ class Solution {
     public int[] getStrongest(int[] arr, int k) {
         Arrays.sort(arr);
         int n =arr.length;
-        int median = arr[((n-1)/2)];
+        int median = arr[(n-1)/2];
         
         PriorityQueue<Integer> pq = new PriorityQueue<Integer>(
         (x,y)->Math.abs(y-median)!=Math.abs(x-median)?
