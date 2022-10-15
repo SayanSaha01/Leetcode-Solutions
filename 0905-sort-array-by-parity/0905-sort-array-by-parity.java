@@ -1,4 +1,5 @@
 /*
+//Using Deque
 class Solution {
     public int[] sortArrayByParity(int[] nums) {
         Deque<Integer> even = new LinkedList<>();
