@@ -1,3 +1,4 @@
+/*
 class Solution {
     public int[] sortArrayByParity(int[] nums) {
         Deque<Integer> even = new LinkedList<>();
@@ -24,5 +25,25 @@ class Solution {
             res[index++]=odd.removeFirst();
         }
         return res;
+    }
+}
+*/
+class Solution {
+    public int[] sortArrayByParity(int[] nums) {
+        int[] arr = new int[nums.length];
+        int start = 0;
+        int end = nums.length-1;
+        for(int i:nums)
+        {
+            if(i%2==0)
+            {
+                arr[start++]=i;
+            }
+            else
+            {
+                arr[end--]=i;
+            }
+        }
+        return arr;
     }
 }
