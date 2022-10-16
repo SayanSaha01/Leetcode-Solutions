@@ -1,4 +1,4 @@
-class Solution {
+/*class Solution {
 public int dominantIndex(int[] nums) {
     int arr[] = new int[nums.length];
     HashMap<Integer,Integer>map = new HashMap<Integer,Integer>();
@@ -19,4 +19,18 @@ public int dominantIndex(int[] nums) {
     }
     return map.get(max);
   }
+}*/
+
+class Solution {
+    public int dominantIndex(int[] nums) {
+        ArrayList<Integer> list=new ArrayList<>();
+        for(int i=0;i<nums.length;i++)
+        list.add(nums[i]);
+        Arrays.sort(nums);
+        for(int i=0;i<nums.length-1;i++){
+            if(nums[nums.length-1]>=nums[i]*2) continue;
+            else return -1;
+        }
+        return list.indexOf(nums[nums.length-1]);
+    }
 }
