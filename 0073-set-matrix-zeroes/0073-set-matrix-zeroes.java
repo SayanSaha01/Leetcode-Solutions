@@ -2,11 +2,11 @@ class Solution {
     public void setZeroes(int[][] matrix) {
         Set<Integer> rowset = new HashSet<Integer>();
         Set<Integer> colset = new HashSet<Integer>();
-        int row = matrix.length;
-        int col = matrix[0].length;
-        for(int i=0;i<row;i++)
+        int row = matrix.length-1;
+        int col = matrix[0].length-1;
+        for(int i=0;i<=row;i++)
         {
-            for(int j=0;j<col;j++)
+            for(int j=0;j<=col;j++)
             {
                 if(matrix[i][j]==0)
                 {
@@ -15,9 +15,9 @@ class Solution {
                 }
             }
         }
-        for(int i=0;i<row;i++)
+        for(int i=0;i<=row;i++)
         {
-            for(int j=0;j<col;j++)
+            for(int j=0;j<=col;j++)
             {
                 if(rowset.contains(i) || colset.contains(j))
                 {
