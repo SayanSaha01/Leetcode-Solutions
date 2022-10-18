@@ -16,7 +16,7 @@ class Solution {
                 high--;
             }
         }
-        perm[s.length()]=high;
+        perm[s.length()]=low;
         return perm;
     }
 }
