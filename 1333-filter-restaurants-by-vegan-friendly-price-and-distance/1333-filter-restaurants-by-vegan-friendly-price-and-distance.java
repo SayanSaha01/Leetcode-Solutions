@@ -13,7 +13,14 @@ here if we take the other way round restaurants[i][2]<=veganFriendly we would be
 
         for(int i=0;i<restaurants.length;i++)
         {
-            if(veganFriendly<=restaurants[i][2] && restaurants[i][3]<=maxPrice && restaurants[i][4]<=maxDistance)
+            if(veganFriendly==1)
+            {
+                if(veganFriendly!=restaurants[i][2])
+                {
+                    continue;
+                }
+            }
+            if(restaurants[i][3]<=maxPrice && restaurants[i][4]<=maxDistance)
 //why veganFriendly < = restaurants[i][2] and not the other way round, lets take for example, 
             {
                 pq.offer(restaurants[i]);
