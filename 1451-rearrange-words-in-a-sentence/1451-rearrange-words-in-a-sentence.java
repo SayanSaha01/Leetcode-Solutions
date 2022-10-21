@@ -1,21 +1,26 @@
 class Solution {
     public String arrangeWords(String text) {
         String[] alpha = text.split(" ");
+        PriorityQueue<Integer> pq = new PriorityQueue<Integer>
+        ((a,b)->alpha[a].length()==alpha[b].length()?a-b:alpha[a].length()-alpha[b].length());
+         //these two are numbersbasically as in pq.offer we are passing indexes
         
-        Arrays.sort(alpha,(s1,s2)->s1.length()-s2.length());
-        
-        StringBuilder sb = new StringBuilder();
-        for(int i=0;i<alpha.length;i++)
+        for(int index=0; index<alpha.length; index++)
         {
+            pq.offer(index);
+        }
+        StringBuilder sb = new StringBuilder();
+        int i=0;
+        while(!pq.isEmpty())
+        {
+            int index = pq.poll();
             if(i==0)
-            {
-                sb.append(alpha[i].substring(0,1).toUpperCase()+alpha[i].substring(1).toLowerCase());
+            { sb.append(alpha[index].substring(0,1).toUpperCase()+alpha[index].substring(1).toLowerCase()+" ");
             }
-            else
-            {
-                sb.append(alpha[i].toLowerCase());
+            else{
+                sb.append(alpha[index].toLowerCase()+" ");
             }
-            sb.append(" ");
+            i++;
         }
         return sb.toString().trim();
     }
