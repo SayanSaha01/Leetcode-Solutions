@@ -2,7 +2,10 @@ class Solution {
     public String arrangeWords(String text) {
         String[] alpha = text.split(" ");
         PriorityQueue<Integer> pq = new PriorityQueue<Integer>
-        ((a,b)->alpha[a].length()==alpha[b].length()?a-b:alpha[a].length()-alpha[b].length());
+        ((a,b)->alpha[a].length()==alpha[b].length()
+         ?a-b:    //Same length will give you diff of 0 which means don't change position of s1 and s2
+         alpha[a].length()-alpha[b].length()
+        );
          //these two are numbersbasically as in pq.offer we are passing indexes
         
         for(int index=0; index<alpha.length; index++)
