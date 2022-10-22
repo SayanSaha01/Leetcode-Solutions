@@ -4,7 +4,9 @@ class Solution {
         for(String str:words)
         {
             if(s.indexOf(str)==0)
+            {
                 count++;
+            }
         }
         return count;
     }
