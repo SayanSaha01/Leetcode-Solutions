@@ -1,15 +1,15 @@
 class Solution {
     public int thirdMax(int[] nums) {
-        TreeSet<Integer> treeset = new TreeSet<Integer>(Collections.reverseOrder());
-        for(int i:nums)
+    TreeSet<Integer> set = new TreeSet<Integer>(Collections.reverseOrder());
+        for(int i=0;i<nums.length;i++)
         {
-            treeset.add(i);
+            set.add(nums[i]);
         }
-        if(treeset.size()>=3)
+        if(set.size()>=3)
         {
-            treeset.pollFirst();
-            treeset.pollFirst();
+            set.pollFirst();
+            set.pollFirst();
         }
-        return treeset.first();
+        return set.first();
     }
 }
