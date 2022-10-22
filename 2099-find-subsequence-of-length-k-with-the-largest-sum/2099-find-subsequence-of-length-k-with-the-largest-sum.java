@@ -1,20 +1,16 @@
 class Solution {
     public int[] maxSubsequence(int[] nums, int k) {
         int[] numscopy = new int[nums.length];
-        PriorityQueue<Integer> pq = new PriorityQueue<Integer>();
+        PriorityQueue<Integer> pq = new PriorityQueue<Integer>(Collections.reverseOrder());
         for(int i=0;i<nums.length;i++)
         {
             numscopy[i] = nums[i];
             pq.offer(nums[i]);
         }
-        Arrays.sort(nums);
-        ArrayList<Integer> list = new ArrayList<>();
-        int count=0;
-        for(int i=nums.length-1;i>=0;i--){
-            count++;
-            list.add(nums[i]);
-            if(count==k)
-                break;
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        for(int i=0;i<k;i++)
+        {
+            list.add(pq.poll());
         }
         int arr[] = new int[k];
         int index=0;
