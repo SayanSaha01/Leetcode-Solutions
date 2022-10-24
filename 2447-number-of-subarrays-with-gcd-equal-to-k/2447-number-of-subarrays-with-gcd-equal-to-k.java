@@ -6,7 +6,7 @@ class Solution {
             int curr_gcd=0;
             for(int j=i;j<nums.length;j++)
             {
-                curr_gcd=gcd(curr_gcd,nums[j]);
+                curr_gcd=gcd(nums[j],curr_gcd);
                 if(curr_gcd==k)
                     count++;
             }
