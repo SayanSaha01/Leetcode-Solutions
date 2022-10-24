@@ -8,13 +8,11 @@ class Solution {
         int count=0;
         for(String str:words)
         {
-            for(int i=0;i<str.length();i++)
-            {
-                if(!set.contains(str.charAt(i)))
-                    break;
-                if(i==str.length()-1)
-                    count++;
-            }
+            int j=0;
+            while(j<str.length() && set.contains(str.charAt(j)))
+                j++;
+            if(j==str.length())
+                count++;
         }
         return count;
     }
