@@ -15,12 +15,15 @@ class Solution {
             }
             else
             {
-                while(freq>0 && set.contains(freq))
+                if(freq==0)
+                    continue;
+                while(set.contains(freq))
                 {
                     freq--;
                     count++;
                 }
-                set.add(freq);
+                if(freq!=0)
+                    set.add(freq);
             }
         }
         return count;
