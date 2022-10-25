@@ -20,10 +20,7 @@ class Solution {
                     freq--;
                     count++;
                 }
-                if(freq>0)
-                {
-                    set.add(freq);
-                }
+                set.add(freq);
             }
         }
         return count;
