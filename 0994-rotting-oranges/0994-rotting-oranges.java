@@ -29,28 +29,29 @@ class Solution {
             }
         }
         
-        while(!queue.isEmpty()){
+        while(!queue.isEmpty())
+        {
             Pair p = queue.remove();
             visited[p.row][p.col]=true;
             
-            for(int dr[] : dir){
+            for(int dr[] : dir)
+            {
                 int i = p.row+dr[0];
                 int j = p.col+dr[1];
                 
-                if(isValidDir(i,j,grid) && grid[i][j]==1 && !visited[i][j]){
+                if(isValidDir(i,j,grid) && grid[i][j]==1 && !visited[i][j])
+                {
                     grid[i][j]=2;
                     queue.add(new Pair(i,j,p.time+1));
                 }
             }
             max=Math.max(max,p.time);
         }
-        
         for(int rows[] : grid){
             for(int cols : rows){
                 if(cols==1) count++;
             }
         }
-        
         return count>0 ? -1 : max;
     }
     
