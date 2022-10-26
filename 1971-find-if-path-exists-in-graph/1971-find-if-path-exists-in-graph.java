@@ -1,27 +1,22 @@
 class Solution {
     public boolean validPath(int n, int[][] edges, int source, int destination) {
-        
-        boolean[] visited = new boolean[n];
-        ArrayList<ArrayList<Integer>> adj = adjacencylistgenerator(n,edges);
-        return pathexists(adj,source,destination,visited);
-    }
-public ArrayList<ArrayList<Integer>> adjacencylistgenerator(int n,int[][] edges)
-    {
-        ArrayList<ArrayList<Integer>> list = new ArrayList<>();
+        ArrayList<ArrayList<Integer>> adj = new ArrayList<ArrayList<Integer>>();
         for(int i=0;i<n;i++)
         {
-            list.add(new ArrayList<>());
+            adj.add(new ArrayList<>());
         }
         for(int[] edge:edges)
         {
             int src = edge[0];
             int dest = edge[1];
-            list.get(src).add(dest);
-            list.get(dest).add(src);
+            adj.get(src).add(dest);
+            adj.get(dest).add(src);
         }
-        return list;
+        boolean[] visited = new boolean[n];
+        Arrays.fill(visited,false);
+        return dfs(adj,source,destination,visited);
     }
-    public boolean pathexists(ArrayList<ArrayList<Integer>> adj,int src,int dest,boolean[] visited)
+    public boolean dfs(ArrayList<ArrayList<Integer>> adj,int src,int dest,boolean[] visited)
     {
         if(src==dest)
             return true;
@@ -30,8 +25,8 @@ public ArrayList<ArrayList<Integer>> adjacencylistgenerator(int n,int[][] edges)
         {
             if(visited[i]==false)
             {
-                boolean haspath = pathexists(adj,i,dest,visited);
-                if(haspath)
+                boolean pathexist = dfs(adj,i,dest,visited);
+                if(pathexist)
                     return true;
             }
         }
