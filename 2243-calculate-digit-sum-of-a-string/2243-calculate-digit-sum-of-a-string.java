@@ -1,20 +1,20 @@
 class Solution {
     public String digitSum(String s, int k) {
-        String str = s;
-        while(str.length()>k)
+        while(s.length()>k)
         {
             String newstr="";
-            for(int i=0;i<str.length();i+=k)
+            for(int i=0;i<s.length();i+=k)
             {
-                int sum=0;
-                for(int j=i;j<i+k && j<str.length();j++)
+                int sum=0; //for storing the sum of the digits;
+                String temp = s.substring(i,Math.min(i+k,s.length()));
+                for(int j=0;j<temp.length();j++)
                 {
-                    sum += str.charAt(j)-'0';
+                    sum+=temp.charAt(j)-'0';
                 }
-                newstr+=sum+"";
+                newstr=newstr+""+sum;
             }
-            str=newstr;
+            s=newstr;
         }
-        return str;
+        return s;
     }
 }
