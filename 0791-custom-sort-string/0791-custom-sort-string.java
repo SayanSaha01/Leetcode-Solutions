@@ -14,7 +14,7 @@ class Solution {
                 int val=map.get(c);
                 while(val-->0)
                 {
-                    sb.append(c+"");
+                    sb.append(c);
                 }
                 map.remove(c);
             }
@@ -25,7 +25,8 @@ class Solution {
             {
                 int val = map.get(c);
                 while(val-->0)
-                    sb.append(c+"");
+                    sb.append(c);
+                
             }
         }
         return sb.toString();
