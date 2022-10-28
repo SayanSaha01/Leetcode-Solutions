@@ -7,18 +7,18 @@
 <p>&nbsp;</p>
 <p><strong class="example">Example 1:</strong></p>
 
-<pre style="position: relative;"><strong>Input:</strong> order = "cba", s = "abcd"
+<pre><strong>Input:</strong> order = "cba", s = "abcd"
 <strong>Output:</strong> "cbad"
 <strong>Explanation:</strong> 
 "a", "b", "c" appear in order, so the order of "a", "b", "c" should be "c", "b", and "a". 
 Since "d" does not appear in order, it can be at any position in the returned string. "dcba", "cdba", "cbda" are also valid outputs.
-<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+</pre>
 
 <p><strong class="example">Example 2:</strong></p>
 
-<pre style="position: relative;"><strong>Input:</strong> order = "cbafg", s = "abcd"
+<pre><strong>Input:</strong> order = "cbafg", s = "abcd"
 <strong>Output:</strong> "cbad"
-<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
+</pre>
 
 <p>&nbsp;</p>
 <p><strong>Constraints:</strong></p>
