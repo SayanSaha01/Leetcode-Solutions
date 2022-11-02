@@ -1,31 +1,33 @@
 class Solution {
     
-    public boolean dfs (int[][] graph, int[] colour, int node) {
+    public boolean dfs (int[][] graph, int[] coloured, int i,int color) {
         
-        for (int newNode : graph[node]) {
-            if (colour[node] == colour[newNode]) {
-                return false;
-            }
-            else if (colour[newNode] == -1) {
-                colour[newNode] = 1 - colour[node];
-                if (!dfs (graph, colour, newNode)) {
+        coloured[i]=color;
+        for (int it : graph[i])
+        {
+            if(coloured[it] == -1) 
+            {
+                if(dfs(graph,coloured,it,1-color)==false) 
+                {
                     return false;
                 }
             }
+            else if(coloured[it]==color)
+                return false;
         }
-        
         return true;
     }
     
     public boolean isBipartite(int[][] graph) {
         
-        int[] colour = new int[graph.length];
-        Arrays.fill (colour, -1);
+        int[] coloured = new int[graph.length];
+        Arrays.fill (coloured, -1);
         
-        for (int node = 0; node < graph.length; node++) {
-            if (colour[node] == -1) {
-                colour[node] = 1;
-                if (!dfs (graph, colour, node)) {
+        for (int i = 0; i < graph.length; i++) {
+            if (coloured[i] == -1) 
+            {
+                if (dfs(graph,coloured,i,0)==false)
+                {
                     return false;
                 }
             }
