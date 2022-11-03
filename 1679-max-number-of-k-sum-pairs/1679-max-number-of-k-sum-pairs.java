@@ -4,7 +4,7 @@ class Solution {
         HashMap<Integer,Integer> map = new HashMap<Integer,Integer>();
         for(int i=0;i<nums.length;i++)
         {
-            if(map.containsKey(k-nums[i]) && map.get(k-nums[i])>0)
+            if(map.containsKey(k-nums[i]) && map.get(k-nums[i])!=0)
             {
                 count++;
                 map.put(k-nums[i],map.get(k-nums[i])-1);
