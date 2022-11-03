@@ -1,19 +1,22 @@
 class Solution {
     public List<Integer> intersection(int[][] nums) {
-        int[] count=new int[1001];
-        for(int i=0;i<nums.length;i++)
+        HashMap<Integer,Integer> map = new HashMap<Integer,Integer>();
+        for(int[] num:nums)
         {
-            for(int j=0;j<nums[i].length;j++)
+            for(int i:num)
             {
-                count[nums[i][j]]++;
+                map.put(i,map.getOrDefault(i,0)+1);
             }
         }
-        List<Integer> arr= new ArrayList<Integer>();
-        for(int i=0;i<count.length;i++)
+        List<Integer> list = new ArrayList<>();
+        for(int i:map.keySet())
         {
-            if(count[i]==nums.length)
-                arr.add(i);
+            if(map.get(i)==nums.length)
+            {
+                list.add(i);
+            }
         }
-        return arr;
+        Collections.sort(list);
+        return list;
     }
 }
