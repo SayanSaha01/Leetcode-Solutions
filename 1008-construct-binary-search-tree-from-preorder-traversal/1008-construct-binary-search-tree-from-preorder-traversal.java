@@ -19,16 +19,18 @@ class Solution {
     }
     
     private TreeNode build(int[] preorder, int start, int end) {
-        if(start > end) return null;
+        if(start > end) 
+            return null;
         int val = preorder[start];
         TreeNode root = new TreeNode(val);
-        int p = start+1;
-		//find the position to separate left and right children.
-        while(p <= end && preorder[p] < val) {
-            p++;
+        int index;
+        for(index=start;index<=end;index++)
+        {
+            if(preorder[index]>val)
+                break;
         }
-        root.left = build(preorder, start+1, p-1);
-        root.right = build(preorder, p, end);
+        root.left = build(preorder, start+1, index-1);
+        root.right = build(preorder, index, end);
         return root;
     }
 }
