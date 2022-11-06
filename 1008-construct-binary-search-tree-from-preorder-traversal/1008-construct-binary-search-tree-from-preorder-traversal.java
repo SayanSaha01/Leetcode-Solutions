@@ -14,23 +14,27 @@
  * }
  */
 class Solution {
-     public TreeNode bstFromPreorder(int[] preorder) {
-        return build(preorder, 0, preorder.length - 1);
+    public TreeNode bstFromPreorder(int[] preorder) {
+        return construct(preorder,0,preorder.length-1);
     }
-    
-    private TreeNode build(int[] preorder, int start, int end) {
-        if(start > end) 
+    public TreeNode construct(int[] preorder,int start,int end)
+    {
+        if(start>end)
             return null;
-        int val = preorder[start];
-        TreeNode root = new TreeNode(val);
-        int index;
+        
+        int data = preorder[start];    //why not preorder[0] instead of start -> as we are using recursion we will initialise root in case of subtree with preorder[start] val, then we cant use 0
+        TreeNode root = new TreeNode(data);
+        
+        int index;        //global variable as we need to figure out where there exists a value bigger than preorder[start] for the right subtree
         for(index=start;index<=end;index++)
         {
-            if(preorder[index]>val)
+            if(preorder[index]>data)
                 break;
         }
-        root.left = build(preorder, start+1, index-1);
-        root.right = build(preorder, index, end);
+        
+        root.left = construct(preorder,start+1,index-1);
+        root.right = construct(preorder,index,end);
+        
         return root;
     }
 }
