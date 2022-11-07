@@ -1,14 +1,22 @@
 class Solution {
     public int maximum69Number (int num) {
-        char[] numstr = String.valueOf(num).toCharArray();
-        for(int i=0;i<numstr.length;i++)
+PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+        String s = Integer.toString(num);
+        for(int i=0;i<s.length();i++)
         {
-            if(numstr[i]=='6')
+            if(s.charAt(i)=='9')
             {
-                numstr[i]='9';
-                break;
+                String p =s.substring(0,i)+'6'+s.substring(i+1);
+                System.out.println(p);
+                pq.offer(Integer.valueOf(p));
+            }
+            else if(s.charAt(i)=='6')
+            {
+                String p =s.substring(0,i)+'9'+s.substring(i+1);
+                System.out.println(p);
+                pq.offer(Integer.valueOf(p));
             }
         }
-        return Integer.parseInt(String.valueOf(numstr));
+        return num>pq.peek()?num:pq.poll();
     }
 }
