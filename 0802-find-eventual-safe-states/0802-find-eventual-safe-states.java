@@ -20,10 +20,6 @@ class Solution {
         // After reversing the graph we will simply return the topological sort for all the indegrees zero
         // If any node doesn't reaches indegree zero 
         // that means it has another indegree as well and it can't be safe node
-        return topo(adj,indegree);
-    }
-    
-    public List<Integer> topo(List<List<Integer>> adj, int[] indegree){
         Queue<Integer> queue = new LinkedList<>();
         for(int i = 0; i<adj.size(); i++){
             if(indegree[i]==0){
