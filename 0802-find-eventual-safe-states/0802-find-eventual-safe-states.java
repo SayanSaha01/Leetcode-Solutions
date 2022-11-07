@@ -2,44 +2,47 @@ class Solution {
     public List<Integer> eventualSafeNodes(int[][] graph) {
         List<List<Integer>> adj = new ArrayList<>();
         int V = graph.length;
+        
+        for(int i=0;i<V;i++)
+        {
+            adj.add(new ArrayList<>());
+        }
+        
         int[] indegree = new int[V];
         
-        for(int i=0; i<V; i++)
-            adj.add(new ArrayList<>());
-        
-        // Reverse the directed edges of the graph
-        // Because we want here the outdegree int this question
-        
-        for(int i=0; i<graph.length; i++){
-            for(int it: graph[i]){
+        //normally it happens that we assign in list.get(i).add(it) but as we need to reverse the directions we do list.get(it).add(it)
+        for(int i=0;i<graph.length;i++)
+        {
+            for(int it:graph[i])
+            {
                 adj.get(it).add(i);
                 indegree[i]++;
             }
         }
         
-        // After reversing the graph we will simply return the topological sort for all the indegrees zero
-        // If any node doesn't reaches indegree zero 
-        // that means it has another indegree as well and it can't be safe node
         Queue<Integer> queue = new LinkedList<>();
-        for(int i = 0; i<adj.size(); i++){
-            if(indegree[i]==0){
-                queue.offer(i);
-            }
+        for(int i=0;i<indegree.length;i++)
+        {
+            if(indegree[i]==0)
+                queue.add(i);
         }
         
+        int index=0;
         List<Integer> res = new ArrayList<>();
-        while(!queue.isEmpty()){
+        while(!queue.isEmpty())
+        {
             int node = queue.poll();
             res.add(node);
-            
-            for(Integer adjacent: adj.get(node)){
-                indegree[adjacent]--;
-                if(indegree[adjacent]==0){
-                    queue.offer(adjacent);
+            for(int it:adj.get(node))
+            {
+                indegree[it]--;
+                
+                if(indegree[it]==0)
+                {
+                    queue.add(it);
                 }
             }
         }
-        
         Collections.sort(res);
         return res;
     }
