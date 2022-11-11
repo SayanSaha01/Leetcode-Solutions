@@ -8,7 +8,11 @@ class Solution {
                 map.put(i,map.getOrDefault(i,0)+1);
             }
         }
-        PriorityQueue<Integer> pq = new PriorityQueue<Integer>((a,b)->map.get(a)-map.get(b)==0?a.compareTo(b):map.get(b)-map.get(a));
+        PriorityQueue<Integer> pq = new PriorityQueue<Integer>(
+        (a,b)->map.get(a)-map.get(b)==0
+        ?a.compareTo(b)  //if they have some frequency then return smallest one
+        :map.get(b)-map.get(a));   //else if they dont have the same frequency,return the one with the highest occurence
+        
         for(int i:map.keySet())
         {
             pq.add(i);
