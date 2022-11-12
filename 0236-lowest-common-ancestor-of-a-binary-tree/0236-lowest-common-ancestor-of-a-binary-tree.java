@@ -19,7 +19,8 @@ class Solution {
         if(left==null && right==null)
             return null;
         
-        if((left==p && right==q)||(left==q && right==p))
+        //if((left==p && right==q)||(left==q && right==p))
+        if(left!=null && right!=null)
             return root;
         
         return left!=null?left:right;
