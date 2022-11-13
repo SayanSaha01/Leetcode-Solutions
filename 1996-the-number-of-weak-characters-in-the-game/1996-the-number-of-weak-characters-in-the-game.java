@@ -1,20 +1,25 @@
 class Solution {
     public int numberOfWeakCharacters(int[][] properties) {
-        Arrays.sort(properties,(a,b)->a[0]==b[0]
-            //if the attacks are same sort then according to defense
-                    ?a[1]-b[1]
-                    :b[0]-a[0]);
-        int max = properties[0][1];   //storing the defense
-        int count=0;
-        for(int i=1;i<properties.length;i++)
-        {
-            if(properties[i][1]<max)
-            {
-                count++;
+        
+        // if we sort only by 1st indexes, there could be values where 1st index is the same 
+        // Arrays.sort(properties, (a,b) -> Integer.compare(a[0], b[0]));
+        
+        // b[1], a[1] because we need the 2nd values in descending order
+        Arrays.sort(properties, (a,b) -> (a[0] == b[0]) ? Integer.compare(b[1], a[1]) : Integer.compare(a[0], b[0]));
+        
+        int noOfWeakCharacters = 0;
+        int len = properties.length;
+       // improvization here - // we need to keep track of the max value
+        int max = properties[len-1][1];
+        
+        for(int i = len-2; i>=0 ;i--) {
+            
+            if(properties[i][1] < max) {
+                noOfWeakCharacters++;
+            } else {
+                max = properties[i][1];
             }
-            else
-                max = Math.max(max,properties[i][1]);
         }
-        return count;
+        return noOfWeakCharacters;
     }
 }
