@@ -15,7 +15,7 @@ class Solution {
         int count=0;
         for(int i=2;i<n;i++)
         {
-            if(prime[i])
+            if(prime[i]==true)
                 count++;
         }
         return count;
