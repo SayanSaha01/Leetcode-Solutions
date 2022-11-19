@@ -5,7 +5,7 @@ class Solution {
             adj.add(new ArrayList<>());
         }
         for(int pair[] : prerequisites){
-            adj.get(pair[0]).add(pair[1]);
+            adj.get(pair[1]).add(pair[0]);
         }
         int indegree[] = new int[numCourses];
         for(int i=0 ; i<numCourses ; i++){
@@ -20,9 +20,11 @@ class Solution {
             }
         }
         int count = 0;
+        int index=0;
+        int[] arr = new int[numCourses];
         while(!q.isEmpty()){
             int node = q.poll();
-            count++;
+            arr[index++]=node;
             for(int it : adj.get(node)){
                 indegree[it]--;
                 if(indegree[it] == 0){
@@ -30,6 +32,6 @@ class Solution {
                 }
             }
         }
-        return count == numCourses;
+        return index == numCourses;   
     }
 }
