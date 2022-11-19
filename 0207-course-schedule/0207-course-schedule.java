@@ -5,7 +5,7 @@ class Solution {
             adj.add(new ArrayList<>());
         }
         for(int pair[] : prerequisites){
-            adj.get(pair[1]).add(pair[0]);
+            adj.get(pair[0]).add(pair[1]);
         }
         int indegree[] = new int[numCourses];
         for(int i=0 ; i<numCourses ; i++){
