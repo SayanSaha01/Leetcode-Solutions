@@ -25,6 +25,8 @@ class Solution {
             Integer lowerkey = tmap.containsKey(i) ? Integer.valueOf(i) : tmap.lowerKey(i);
             Integer higherkey = tmap.containsKey(i) ? Integer.valueOf(i) : tmap.higherKey(i);
             
+            //why cant we store values in int lowerkey/higherkey-> because if tmap doesnt contain a lesservalue then it returns null, but int which is a primitive type cannot store null values hence we use Integer lowerkey/higherkey
+            
             sublist.add(lowerkey==null ? -1:lowerkey);
             sublist.add(higherkey==null ? -1:higherkey);
             
