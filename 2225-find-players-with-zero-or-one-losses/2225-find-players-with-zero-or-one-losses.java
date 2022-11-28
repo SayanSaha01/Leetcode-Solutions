@@ -1,36 +1,32 @@
 class Solution {
     public List<List<Integer>> findWinners(int[][] matches) {
         List<List<Integer>> list = new ArrayList<>();
-        TreeSet<Integer> set = new TreeSet<Integer>();
-        TreeMap<Integer,Integer> map = new TreeMap<>();
-        for(int i=0;i<matches.length;i++)
+        TreeMap<Integer,Integer> map = new TreeMap<Integer,Integer>();
+        for(int[] mat:matches)
         {
-            if(!map.containsKey(matches[i][1]))
-            {
-                map.put(matches[i][1],1);
-            }
-            else
-            {
-                map.put(matches[i][1],map.get(matches[i][1])+1);
-            }
+            map.put(mat[1],map.getOrDefault(mat[1],0)+1);
         }
-        ArrayList<Integer> loser = new ArrayList<Integer>();
+        List<Integer> onelost = new ArrayList<>();
         for(int i:map.keySet())
         {
             if(map.get(i)==1)
             {
-                loser.add(i);
+                onelost.add(i);
             }
         }
-        TreeSet<Integer> ans = new TreeSet<>();
-		for (int i = 0; i < matches.length; i++) {
-			if (!map.containsKey(matches[i][0])) {
-				ans.add(matches[i][0]);
-			}
-		}
-		List<Integer> winner = new ArrayList<>(ans);
-        list.add(winner);
-        list.add(loser);
+        List<Integer> notlost = new ArrayList<>();
+        TreeSet<Integer> set = new TreeSet<Integer>();
+        for(int[] mt:matches)
+        {
+            if(!map.containsKey(mt[0]))
+            {
+                set.add(mt[0]);
+            }
+        }
+        for(int a:set)
+            notlost.add(a);
+        list.add(notlost);
+        list.add(onelost);
         return list;
     }
 }
