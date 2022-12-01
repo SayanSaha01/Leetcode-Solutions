@@ -10,27 +10,31 @@
  */
 class Solution {
     public ListNode removeNodes(ListNode head) {
-        if(head==null || head.next==null)
-            return head;
-        
-        ListNode curr = head;
-        Stack<ListNode> st = new Stack<>();
-        
-        while(curr!=null)
+        ListNode ans = new ListNode(-1);
+        ListNode temp = head;
+        ListNode refer = ans;
+        TreeMap<Integer,Integer> map = new TreeMap<Integer,Integer>();
+        while(temp!=null)
         {
-            st.push(curr);
-            curr=curr.next;
+            map.put(temp.val,map.getOrDefault(temp.val,0)+1);
+            temp = temp.next;
         }
-        
-        while(!st.isEmpty())
+        temp = head;
+        while(temp!=null)
         {
-            if(curr==null || st.peek().val >= curr.val)
+            int currval = temp.val;
+            Integer nextval = map.ceilingKey(currval+1);
+            if(nextval==null)
             {
-                st.peek().next = curr;
-                curr = st.peek();
+                refer.next = temp;
+                refer = refer.next;
             }
-            st.pop();
+            temp = temp.next;
+            map.put(currval,map.getOrDefault(currval,0)-1);
+            if(map.get(currval)==0)
+                map.remove(currval);
         }
-        return curr;
+        refer.next=null;
+        return ans.next;
     }
 }
