@@ -58,9 +58,9 @@ class Main {
 /*Complete the function below*/
 
 
-class Solution
+/*class Solution
 {
-    //Function to return list containing vertices in Topological order. 
+    //Function to return list containing vertices in Topological order DFS Approach
     static int[] topoSort(int V, ArrayList<ArrayList<Integer>> adj) 
     {
         int[] visited = new int[V];
@@ -84,7 +84,6 @@ class Solution
     static void dfs(int idx,ArrayList<ArrayList<Integer>> adj,int[] visited,Stack<Integer> st)
     {
         visited[idx]=1;
-        
         for(int it : adj.get(idx))
         {
             if(visited[it]==0)
@@ -93,5 +92,45 @@ class Solution
             }
         }
         st.push(idx);
+    }
+}
+*/
+class Solution
+{
+    //Function to return list containing vertices in Topological order BFS Approach
+    static int[] topoSort(int V, ArrayList<ArrayList<Integer>> adj)
+    {
+        int[] indegree = new int[V];
+        for(int i=0;i<V;i++)
+        {
+            for(int it:adj.get(i))
+            {
+                indegree[it]++;
+            }
+        }
+        Queue<Integer> queue = new LinkedList<Integer>();
+        for(int i=0;i<V;i++)
+        {
+            if(indegree[i]==0)
+            {
+                queue.offer(i);
+            }
+        }
+        int[] arr = new int[V];
+        int j=0;
+        while(!queue.isEmpty())
+        {
+            int node=queue.poll();
+            arr[j++]=node;
+            for(int it:adj.get(node))
+            {
+                indegree[it]--;
+                if(indegree[it]==0)
+                {
+                    queue.offer(it);
+                }
+            }
+        }
+        return arr;
     }
 }
