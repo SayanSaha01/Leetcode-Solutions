@@ -57,88 +57,41 @@ class Main {
 
 /*Complete the function below*/
 
-/*Topological Sort using DFS 
+
 class Solution
 {
     //Function to return list containing vertices in Topological order. 
     static int[] topoSort(int V, ArrayList<ArrayList<Integer>> adj) 
     {
-        int[] vertex = new int[V];
-        int[] sorted = new int[V];
+        int[] visited = new int[V];
         Stack<Integer> st = new Stack<Integer>();
+        Arrays.fill(visited,0);
         for(int i=0;i<V;i++)
         {
-            if(vertex[i]==0)
+            if(visited[i]==0)
             {
-                dfs(i,adj,vertex,st);
+                dfs(i,adj,visited,st);
             }
         }
-        
-        int index=0;
+        int[] arr = new int[V];
+        int j=0;
         while(!st.isEmpty())
         {
-            sorted[index++]=st.peek();
-            st.pop();
+            arr[j++]=st.pop();
         }
-        return sorted;
+        return arr;
     }
-    static void dfs(int node,ArrayList<ArrayList<Integer>> adj,int[] vertex,Stack<Integer> st)
+    static void dfs(int idx,ArrayList<ArrayList<Integer>> adj,int[] visited,Stack<Integer> st)
     {
-        vertex[node]=1;
-        for(int it:adj.get(node))
-        {
-            if(vertex[it]==0)
-            {
-                dfs(it,adj,vertex,st);
-            }
-        }
-        st.push(node);
-    }
-}
-*/ 
-
-/*Topological Sort using BFS (Kahns Algorithm) */
-
-class Solution
-{
-    static int[] topoSort(int V, ArrayList<ArrayList<Integer>> adj) 
-    {
-        int[] indegree = new int[V];
-        for(int i=0;i<V;i++)
-        {
-            for(int it:adj.get(i))
-            {
-                indegree[it]++;
-            }
-        }
+        visited[idx]=1;
         
-        //adding all the vertices that have 0 indegree
-        Queue<Integer> queue = new LinkedList<Integer>();
-        for(int i=0;i<V;i++)
+        for(int it : adj.get(idx))
         {
-            if(indegree[i]==0)
+            if(visited[it]==0)
             {
-                queue.add(i);
+                dfs(it,adj,visited,st);
             }
         }
-        
-        int index=0;
-        int[] sorted = new int[V];
-        while(!queue.isEmpty())
-        {
-            int node = queue.poll();
-            sorted[index++]=node;
-            
-            for(int it:adj.get(node))
-            {
-                indegree[it]--;
-                if(indegree[it]==0)
-                {
-                    queue.add(it);
-                }
-            }
-        }
-        
-        return sorted;
+        st.push(idx);
     }
 }
