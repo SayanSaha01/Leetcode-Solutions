@@ -32,10 +32,10 @@ class DriverClass {
 /*Complete the function below*/
 
 class Solution {
+    // Function to detect cycle in a directed graph.
     public boolean isCyclic(int V, ArrayList<ArrayList<Integer>> adj) {
-        int[] vertex = new int[V];
+        Queue<Integer> queue = new LinkedList<Integer>();
         int[] indegree = new int[V];
-        Queue<Integer> queue = new LinkedList<>();
         for(int i=0;i<V;i++)
         {
             for(int it:adj.get(i))
@@ -43,31 +43,29 @@ class Solution {
                 indegree[it]++;
             }
         }
-        
         for(int i=0;i<V;i++)
         {
             if(indegree[i]==0)
             {
-                queue.add(i);
+                queue.offer(i);
             }
         }
-        
-        int index=0;
-        int[] sorted = new int[V];
+        int count=0;
         while(!queue.isEmpty())
         {
-            int node = queue.poll();
-            index++;
+            int node=queue.poll();
+            count++;
             for(int it:adj.get(node))
             {
                 indegree[it]--;
                 if(indegree[it]==0)
                 {
-                    queue.add(it);
+                    queue.offer(it);
                 }
             }
         }
-        
-        return (index==V)?false:true;
+        if(count==V)
+          return false;
+        return true;
     }
 }
