@@ -22,6 +22,8 @@ class Solution {
         }
         Arrays.sort(freqmap1);
         Arrays.sort(freqmap2);
+        
+        // we are sorting the frequencies to find whether one or the other character in the two strings have the same character count or not
         for(int i=0;i<26;i++)
         {
             if(freqmap1[i]!=freqmap2[i])
