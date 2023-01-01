@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/next-greater-element-i/discuss/991295/Java-%3A-O(N)-Time-%2B-O(N)-Space-using-Monotonic-Stack-with-explanation
 class Solution {
     public int[] nextGreaterElement(int[] nums1, int[] nums2) {
         Stack<Integer> st = new Stack<Integer>();
