@@ -6,7 +6,7 @@ class Solution {
             return false;
         for(int i=0;i<pattern.length();i++)
         {
-            if(!map.containsKey(pattern.charAt(i)))
+            if(!map.containsKey(pattern.charAt(i)))  //if map doesnt contain the key but somehow contains the pattern of the key
             {
                 if(map.containsValue(str[i]))
                     return false;
