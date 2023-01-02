@@ -1,15 +1,16 @@
 class Solution {
-    public String orderlyQueue(String S, int K) {
-        if (K > 1) {
-            char S2[] = S.toCharArray();
-            Arrays.sort(S2);
-            return new String(S2);
+    public String orderlyQueue(String s, int k) {
+        if (k > 1) {
+            char[] arr = s.toCharArray();
+            Arrays.sort(arr);
+            return String.valueOf(arr);
+        } else {
+            String min = s;
+            for (int i = 0; i < s.length(); i++) {
+                s = s.substring(1) + s.charAt(0);
+                min = min.compareTo(s) < 0 ? min : s;
+            }
+            return min;
         }
-        String res = S;
-        for (int i = 1; i < S.length(); i++) {
-            String tmp = S.substring(i) + S.substring(0, i);
-            if (res.compareTo(tmp) > 0) res = tmp;
-        }
-        return res;
     }
 }
