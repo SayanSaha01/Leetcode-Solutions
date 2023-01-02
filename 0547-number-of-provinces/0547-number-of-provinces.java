@@ -1,14 +1,14 @@
 class Solution {
     public int findCircleNum(int[][] isConnected) {
-        ArrayList<ArrayList<Integer>> list = new ArrayList<ArrayList<Integer>>();
+    ArrayList<ArrayList<Integer>> list = new ArrayList<ArrayList<Integer>>();
         int n = isConnected.length;
         for(int i=0;i<n;i++)
         {
-            list.add(new ArrayList<>());  //initialising the number of arraylists in the arraylist of arraylists;
+            list.add(new ArrayList<>());
         }
         for(int i=0;i<n;i++)
         {
-            for(int j=0;j<n;j++)   //as it is given nxn matrix
+            for(int j=0;j<n;j++)
             {
                 if(i!=j && isConnected[i][j]==1)
                 {
@@ -34,12 +34,12 @@ class Solution {
     public void dfs(ArrayList<ArrayList<Integer>> list,boolean[] visited,int src)
     {
         visited[src]=true;
-        for(int i:list.get(src))
+        for(int it:list.get(src))
         {
-            if(visited[i]==false)
+            if(visited[it]==false)
             {
-                visited[i]=true;
-                dfs(list,visited,i);
+                visited[it]=true;
+                dfs(list,visited,it);
             }
         }
     }
