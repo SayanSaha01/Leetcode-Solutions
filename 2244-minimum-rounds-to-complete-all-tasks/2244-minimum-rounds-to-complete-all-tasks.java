@@ -9,10 +9,12 @@ class Solution {
         for(int count:map.values())
         {
             if(count==1)
-               return -1;
-            min+=count/3;
+                return -1;
+            min += count/3;
             if(count%3!=0)
+            {
                 min++;
+            }
         }
         return min;
     }
