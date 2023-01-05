@@ -1,22 +1,23 @@
 class Solution {
     public int[][] floodFill(int[][] image, int sr, int sc, int color) {
-        int target = image[sr][sc]; //storing the original color
         
-        if(image[sr][sc]==color)    //if the image contains the color itself
+        int scolor = image[sr][sc];
+        
+        if(image[sr][sc]==color)    //if the starting sr,sr is the color itself
             return image;
         
-        dfs(image,sr,sc,target,color);
+        dfs(image,sr,sc,scolor,color);
         return image;
     }
-    public void dfs(int[][] image,int row,int col,int target,int newcolor)
+    public void dfs(int[][] image,int i,int j,int scolor,int target)
     {
-    if(row>=0 && row<image.length && col>=0 && col<image[0].length && image[row][col]==target)
+        if(i>=0 && i<image.length && j>=0 && j<image[0].length && image[i][j]==scolor)
         {
-            image[row][col] = newcolor;
-            dfs(image,row-1,col,target,newcolor);
-            dfs(image,row,col+1,target,newcolor);
-            dfs(image,row+1,col,target,newcolor);
-            dfs(image,row,col-1,target,newcolor);
+            image[i][j]=target;
+            dfs(image,i+1,j,scolor,target);
+            dfs(image,i-1,j,scolor,target);
+            dfs(image,i,j+1,scolor,target);
+            dfs(image,i,j-1,scolor,target);
         }
     }
 }
