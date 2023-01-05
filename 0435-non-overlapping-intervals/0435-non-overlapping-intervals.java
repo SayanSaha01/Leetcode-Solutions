@@ -1,3 +1,6 @@
+//find the number of overlapping intervals and subtract it from the number of intervals to get the number of non-overlapping intervals
+//Solve this problem first - https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/
+//https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/discuss/3000877/Easy-Java-Solution
 class Solution {
     public int eraseOverlapIntervals(int[][] intervals) {
         if(intervals.length==0)
