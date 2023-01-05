@@ -5,17 +5,15 @@ class Solution {
         {
             map.put(i,map.getOrDefault(i,0)+1);
         }
-        int min = 0;
-        for(int count:map.values())
+        int count=0;
+        for(int values:map.values())
         {
-            if(count==1)
+            if(values==1)
                 return -1;
-            min += count/3;
-            if(count%3!=0)
-            {
-                min++;
-            }
+            count+=values/3;
+            if(values%3!=0)
+                count++;
         }
-        return min;
+        return count;
     }
 }
