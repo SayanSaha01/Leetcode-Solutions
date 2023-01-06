@@ -6,8 +6,8 @@ class Solution {
         {
             if(i<=coins)
             {
-                count++;
                 coins-=i;
+                count++;
             }
         }
         return count;
