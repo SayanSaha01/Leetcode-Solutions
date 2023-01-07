@@ -1,55 +1,51 @@
 class Solution {
     public void solve(char[][] board) {
-        // traversing on the top and bottom rows
-        for(int i=0;i<board[0].length;i++)
+        int row = board.length;
+        int col = board[0].length;
+        //finding out the 'O's in first and last row, iterating over all cols of first and last row
+        for(int i=0;i<col;i++)
         {
             if(board[0][i]=='O')
             {
                 dfs(board,0,i);
             }
-            if(board[board.length-1][i]=='O')
+            if(board[row-1][i]=='O')
             {
-                dfs(board,board.length-1,i);
+                dfs(board,row-1,i);
             }
         }
-        
-        // 2nd Loop : Traversing over left & right col, to find any 'O' present by the boundary
-        for(int j=0; j<board.length; j++){
-            if(board[j][0] == 'O')
-            {
-                dfs(board, j, 0);
-            }
-            if(board[j][board[0].length-1]=='O')
-            {
-                dfs(board, j, board[0].length - 1);
-            }
-        }
-        
-        //flipping the remaining
-        for(int i=0;i<board.length;i++)
+        // finding out the 'O's in first and last col,
+        for(int i=0;i<row;i++)
         {
-            for(int j=0;j<board[0].length;j++)
+            if(board[i][0]=='O')
             {
-                if(board[i][j]=='O')
-                {
-                    board[i][j]='X';
-                }
-                else if(board[i][j]=='@')
-                {
+                dfs(board,i,0);
+            }
+            if(board[i][col-1]=='O')
+            {
+                dfs(board,i,col-1);
+            }
+        }
+        for(int i=0;i<row;i++)
+        {
+            for(int j=0;j<col;j++)
+            {
+                if(board[i][j]=='@')
                     board[i][j]='O';
-                }
+                else
+                    board[i][j]='X';
             }
         }
     }
     public void dfs(char[][] board,int i,int j)
     {
-        if(i>=0 && i<=board.length-1 && j>=0 && j<=board[0].length-1 && board[i][j]=='O')
+        if(i>=0 && j>=0 && i<board.length && j<board[0].length && board[i][j]=='O')
         {
             board[i][j]='@';
             dfs(board,i+1,j);
             dfs(board,i-1,j);
-            dfs(board,i,j+1);
             dfs(board,i,j-1);
+            dfs(board,i,j+1);
         }
     }
 }
