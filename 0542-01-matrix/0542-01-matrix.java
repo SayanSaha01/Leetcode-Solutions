@@ -1,13 +1,15 @@
 class Solution {
     public int[][] updateMatrix(int[][] mat) {
-        Queue<int[]> queue = new LinkedList<>();
-        for(int i=0;i<mat.length;i++)
+        int n = mat.length;
+        int m = mat[0].length;
+        Queue<int[]> queue = new LinkedList<int[]>();
+        for(int i=0;i<n;i++)
         {
-            for(int j=0;j<mat[0].length;j++)
+            for(int j=0;j<m;j++)
             {
-                if(mat[i][j]==0)
+                if(mat[i][j]==0) //we need to find out,distance of nearest 0 but lets find out the distance from the cells marked 0
                 {
-                    queue.offer(new int[]{i,j});
+                    queue.add(new int[]{i,j});
                 }
                 else
                 {
@@ -15,26 +17,24 @@ class Solution {
                 }
             }
         }
-        int[][] directions ={{1,0},{-1,0},{0,1},{0,-1}};
-        int length = 0;
+        int nearest=0;
+        int[][] dir = {{0,1},{0,-1},{1,0},{-1,0}};
         while(!queue.isEmpty())
         {
+            nearest++;
             int size=queue.size();
-            length++;
-            while(size-->0)
+            for(int i=0;i<size;i++)
             {
-                int[] poll = queue.poll();
-                
-                for(int[] dir : directions)
+                int[] node = queue.poll();
+                for(int[] d:dir)
                 {
-                    int row = poll[0]+dir[0];
-                    int col = poll[1]+dir[1];
-                    
-                    if(row < 0 || col<0 || row >= mat.length || col>= mat[0].length || mat[row][col] != -1) {
-						continue;
-					}
-                    mat[row][col]=length;
-                    queue.offer(new int[]{row,col});
+                    int row = d[0]+node[0];
+                    int col = d[1]+node[1];
+                    if(row>=0 && col>=0 && row<mat.length && col<mat[0].length && mat[row][col]==-1)
+                    {
+                        mat[row][col]=nearest;
+                        queue.add(new int[]{row,col});
+                    }
                 }
             }
         }
