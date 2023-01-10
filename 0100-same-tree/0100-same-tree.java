@@ -15,13 +15,22 @@
  */
 class Solution {
     public boolean isSameTree(TreeNode p, TreeNode q) {
-        if(p==null && q==null)      
-            return true;    //if both the roots are null, then we dont need to proceed any further, we return true
+        ArrayList<Integer> list1 = new ArrayList<>();
+        ArrayList<Integer> list2 = new ArrayList<>();
+        preorder(list1,p);
+        preorder(list2,q);
+        return list1.equals(list2);
+    }
+    public void preorder(ArrayList<Integer> list,TreeNode root)
+    {
+        if(root==null)
+        {
+            list.add(98);
+            return;
+        }
+        list.add(root.val);
+        preorder(list,root.left);
         
-        if(p==null || q==null)  //if either of the roots are null, then we return false, as it is not equal to its counterpart
-            return false;
-        if(p.val==q.val)  //if the values of the roots match, then we go to the left and right subparts
-            return isSameTree(p.left,q.left) && isSameTree(p.right,q.right);
-        return false;
+        preorder(list,root.right);
     }
 }
