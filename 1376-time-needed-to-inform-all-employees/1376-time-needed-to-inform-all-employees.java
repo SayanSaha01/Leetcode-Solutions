@@ -17,8 +17,8 @@ class Solution {
         
         int max = 0;
         for(int i:a.get(node)){
-            max = Math.max(max,dfs(i,informTime)+informTime[node]);
+            max = Math.max(max,dfs(i,informTime));
         }
-        return max;
+        return max+informTime[node];
     }
 }
