@@ -8,7 +8,7 @@ class Solution {
         }
         
         for(int i=0;i<manager.length;i++){
-            if(manager[i]>=0)
+            if(manager[i]!=-1)
                 a.get(manager[i]).add(i);
         }
         return dfs(headID,informTime); 
