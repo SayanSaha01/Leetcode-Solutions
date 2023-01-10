@@ -25,12 +25,11 @@ class Solution {
     {
         if(root==null)
         {
-            list.add(98);
+            list.add(null);
             return;
         }
         list.add(root.val);
         preorder(list,root.left);
-        
         preorder(list,root.right);
     }
 }
