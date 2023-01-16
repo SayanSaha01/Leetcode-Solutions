@@ -1,22 +1,37 @@
 class Solution {
     public int[][] insert(int[][] intervals, int[] newInterval) {
-        List<int[]> ans = new ArrayList<>();
-        int[] toAdd = newInterval;
         
-        for (int i = 0; i < intervals.length; i ++) {
-			/*1. No overlap and toAdd appears before current interval, add toAdd to result.*/
-            if (intervals[i][0] > toAdd[1]) {
-                ans.add(toAdd);
-                toAdd = intervals[i];
+        List<int[]> result = new ArrayList<>();
+        
+        // Iterate through all slots
+        for(int[] slot : intervals)
+        {
+            
+            // if newInterval before slot insert newInterval & update slot as new interval
+            if(newInterval[1] < slot[0])
+            {
+                result.add(newInterval);
+                newInterval = slot;
+            } 
+            
+            // if slot is lesser than new Interval insert slot
+            else if(slot[1] < newInterval[0])
+            {
+                result.add(slot);
+            } 
+            
+            // if above conditions fail its an overlap since possibility of new interval existing in left & right of slot is checked
+            // update lowest of start & highest of end & not insert
+            else {
+                newInterval[0] = Math.min(newInterval[0],slot[0]);
+                newInterval[1] = Math.max(newInterval[1],slot[1]);
             }
-            /*2. Has overlap, update the toAdd to the merged interval.*/
-			else if (intervals[i][1] >= toAdd[0])  
-                toAdd = new int[] {Math.min(intervals[i][0], toAdd[0]),
-                                   Math.max(intervals[i][1], toAdd[1]) };
-			/*3. No overlap and toAdd appears after current interval, add current interval to result.*/
-            else ans.add(intervals[i]); 
         }
-        ans.add(toAdd);
-		return ans.toArray(new int[ans.size()][2]);
+        
+        // insert the last newInterval
+        result.add(newInterval);
+        
+        // convert to int[][] array
+        return result.toArray(new int[result.size()][]);
     }
 }
