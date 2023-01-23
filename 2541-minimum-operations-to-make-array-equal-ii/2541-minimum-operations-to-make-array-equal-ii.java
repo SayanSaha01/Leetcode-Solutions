@@ -20,11 +20,11 @@ class Solution {
                 {
                     if(nums1[i]>nums2[i] && Math.abs(nums1[i]-nums2[i])%k==0)
                     {
-                        down+=((nums1[i]-nums2[i])/k);
+                        down+=(Math.abs(nums1[i]-nums2[i])/k);
                     }
                     else
                     {
-                        up+=((nums2[i]-nums1[i])/k);
+                        up+=(Math.abs(nums1[i]-nums2[i])/k);
                     }
                 }
             }
