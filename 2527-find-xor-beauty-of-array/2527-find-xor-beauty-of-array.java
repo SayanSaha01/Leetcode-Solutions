@@ -1,9 +1,9 @@
 class Solution {
     public int xorBeauty(int[] nums) {
-        int xor=0;
-        for(int num:nums)
+        int xor=nums[0];
+        for(int i=1;i<nums.length;i++)
         {
-            xor^=num;
+            xor^=nums[i];
         }
         return xor;
     }
