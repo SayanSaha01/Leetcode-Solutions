@@ -4,7 +4,7 @@
 
 <p><strong><span style="font-size:18px">Example 1:</span></strong></p>
 
-<pre><span style="font-size:18px"><strong>Input:</strong></span>
+<pre style="position: relative;"><span style="font-size:18px"><strong>Input:</strong></span>
 <span style="font-size:18px">grid[][] = {{1, 1, 0, 0, 0},
             {1, 1, 0, 0, 0},
             {0, 0, 0, 1, 1},
@@ -20,11 +20,11 @@ Same colored islands are equal.
 We have 2 equal islands, so we 
 have only 1 distinct island.</span>
 
-</pre>
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p><strong><span style="font-size:18px">Example 2:</span></strong></p>
 
-<pre><span style="font-size:18px"><strong>Input:</strong></span>
+<pre style="position: relative;"><span style="font-size:18px"><strong>Input:</strong></span>
 <span style="font-size:18px">grid[][] = {{1, 1, 0, 1, 1},
 &nbsp;           {1, 0, 0, 0, 0},
 &nbsp;           {0, 0, 0, 0, 1},
@@ -40,7 +40,7 @@ have only 1 distinct island.</span>
 We have 4 islands, but 2 of them
 are equal, So we have 3 distinct islands.</span>
 
-</pre>
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p><span style="font-size:18px"><strong>Your Task:</strong></span></p>
 
