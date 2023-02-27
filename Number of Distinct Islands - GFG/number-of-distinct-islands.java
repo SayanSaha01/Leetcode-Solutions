@@ -35,9 +35,9 @@ class GFG {
 // User function Template for Java
 
 class Solution {
-    
+    Set<List<Integer>> set = new HashSet<>();
     int countDistinctIslands(int[][] grid) {
-        Set<List<Integer>> set = new HashSet<>();
+        
         for(int i=0;i<grid.length;i++)
         {
             for(int j=0;j<grid[0].length;j++)
@@ -54,14 +54,16 @@ class Solution {
     }
     public void dfs(int i,int j,int[][] grid, List<Integer> list,int sr,int sc)
     {
-        if(i<0 || j<0 || i==grid.length || j==grid[0].length || grid[i][j]==0)
-           return;
-        grid[i][j]=0;
-        list.add(sr-i);
-        list.add(sc-j);
-        dfs(i+1,j,grid,list,sr,sc);
-        dfs(i-1,j,grid,list,sr,sc);
-        dfs(i,j+1,grid,list,sr,sc);
-        dfs(i,j-1,grid,list,sr,sc);
+        if(i>=0 && j>=0 && i<=grid.length-1 && j<=grid[0].length-1 && grid[i][j]==1)
+        {
+            grid[i][j]=0;
+            list.add(sr-i);
+            list.add(sc-j);
+            dfs(i+1,j,grid,list,sr,sc);
+            dfs(i-1,j,grid,list,sr,sc);
+            dfs(i,j+1,grid,list,sr,sc);
+            dfs(i,j-1,grid,list,sr,sc);
+        }
+        
     }
 }
