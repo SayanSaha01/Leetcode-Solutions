@@ -16,7 +16,7 @@ class Solution {
     
     public int path(int[][] grid , int m , int r , int c , int[][] dp){
         if(c>=m)
-            return Integer.MAX_VALUE-10000;
+            return Integer.MAX_VALUE;
         
         if(dp[r][c] != -1)  return dp[r][c];
         
