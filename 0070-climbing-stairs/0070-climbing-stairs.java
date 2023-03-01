@@ -1,19 +1,18 @@
 class Solution {
-    int[] dp = new int[46];
     public int climbStairs(int n) {
+        int[] dp = new int[n+1];
         Arrays.fill(dp,-1);
-        return help(0,n);
+        return recursion(0,n,dp);  //how many steps we have to traverse and starting index  
     }
-    public int help(int curr_stair,int n)
+    public int recursion(int i,int n,int[] dp)
     {
-        if(curr_stair==n)
+        if(i==n)   // if we are standing at the 5th step and we have to reach the fifth step only
             return 1;
-        if(curr_stair>n)
+        if(i>n)
             return 0;
-        if(dp[curr_stair]!=-1)
-            return dp[curr_stair];
-        int op1 = help(curr_stair+1,n);
-        int op2 = help(curr_stair+2,n);
-        return dp[curr_stair]= op1+op2;
+        if(dp[i]!=-1)
+            return dp[i];
+        dp[i]=recursion(i+1,n,dp)+recursion(i+2,n,dp);  
+        return dp[i];
     }
 }
