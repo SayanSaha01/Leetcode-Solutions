@@ -1,3 +1,5 @@
+// refer this for clear understanding - https://www.youtube.com/watch?v=teVZX760hDA
+
 /*class Solution {
     public int minCostClimbingStairs(int[] cost) {
         int op1 = help(0,cost);
@@ -11,7 +13,7 @@
         int total = cost[curr_stair];
         int op1 = help(curr_stair+1,cost);
         int op2 = help(curr_stair+2,cost);
-        total+=Math.min(op1,op2);
+        total=Math.min(op1,op2);
         return total;
     }
 }*/
@@ -30,10 +32,9 @@ class Solution {
             return 0;
         if(dp[curr_stair]!=-1)
             return dp[curr_stair];
-        int total = cost[curr_stair];
         int op1 = help(curr_stair+1,cost);
         int op2 = help(curr_stair+2,cost);
-        total+=Math.min(op1,op2);
+        int total=cost[curr_stair]+Math.min(op1,op2);
         return dp[curr_stair]=total;
     }
 }
