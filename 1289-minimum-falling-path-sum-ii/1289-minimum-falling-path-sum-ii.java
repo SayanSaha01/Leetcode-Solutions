@@ -3,10 +3,9 @@ class Solution {
         int m = grid.length;
         int[][] dp = new int[m][m];
         
-        for(int i = 0 ; i < m ; i++)
-            for(int j = 0 ; j < m ; j++)
-                dp[i][j] = -1;
-        
+        for(int []d:dp)
+            Arrays.fill(d,-1);
+
         int min = Integer.MAX_VALUE;
         for(int i = 0 ; i < m ; i++)
             min = Math.min(min , path(grid , m , 0 , i , dp));
