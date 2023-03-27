@@ -16,7 +16,7 @@ class Solution {
         for(ListNode l:lists)
         {
             if(l!=null)
-                pq.add(l);
+                pq.add(l);       // this step only adds the head node of each linkedlists, it doesnt add all the linkedlist nodes
         }
         ListNode head = new ListNode(-1);
         ListNode curr = head;
