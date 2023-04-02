@@ -19,7 +19,7 @@ class Solution {
         inclusive(root,low,high);
         return sum;
     }
-    public void inclusive(TreeNode root,int low,int high)
+    public void inclusive(TreeNode root, int low,int high)
     {
         if(root==null)
             return;
