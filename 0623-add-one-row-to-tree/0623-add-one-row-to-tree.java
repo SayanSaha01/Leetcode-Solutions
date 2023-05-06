@@ -30,6 +30,7 @@ class Solution {
             return;
         if(currlevel==depth-1)
         {
+            //adding nodes in the left subtree
             TreeNode temp = node.left;
             node.left = new TreeNode(val);
             node.left.left = temp;
