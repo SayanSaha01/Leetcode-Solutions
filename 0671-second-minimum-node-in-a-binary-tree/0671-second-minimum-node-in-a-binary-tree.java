@@ -18,10 +18,12 @@ class Solution {
         HashSet<Integer> res=new HashSet();
         inord(root,res);
         List<Integer> tmp=new ArrayList(res);
+        for(int i=0;i<tmp.size();i++)
+        {
+            System.out.println(tmp.get(i));
+        }
         Collections.sort(tmp);
-        if(tmp.size()<2)
-          return -1;
-        return tmp.get(1);
+        return tmp.size()<2?-1:tmp.get(1);
     }
     public void inord(TreeNode root,HashSet res)
     {
