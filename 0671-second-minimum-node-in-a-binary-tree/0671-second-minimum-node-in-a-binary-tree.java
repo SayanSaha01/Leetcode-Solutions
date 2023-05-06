@@ -15,24 +15,20 @@
  */
 class Solution {
     public int findSecondMinimumValue(TreeNode root) {
-        PriorityQueue<Integer> pq = new PriorityQueue<>();
-        Queue<TreeNode> qu = new LinkedList<>();
-        
-        qu.add(root);
-        while(!qu.isEmpty())
-        {
-            TreeNode node = qu.poll();
-            if(!pq.contains(node.val))
-            {
-                pq.add(node.val);
-            }
-            if(node.left!=null)
-                qu.add(node.left);
-            if(node.right!=null)
-                qu.add(node.right);
-        }
-        
-        pq.poll();
-        return pq.isEmpty()?-1:pq.poll();
+        HashSet<Integer> res=new HashSet();
+        inord(root,res);
+        List<Integer> tmp=new ArrayList(res);
+        Collections.sort(tmp);
+        if(tmp.size()<2)
+          return -1;
+        return tmp.get(1);
+    }
+    public void inord(TreeNode root,HashSet res)
+    {
+        if(root==null)
+           return;
+        inord(root.left,res);
+        res.add(root.val);
+        inord(root.right,res);
     }
 }
