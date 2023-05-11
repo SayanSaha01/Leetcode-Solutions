@@ -19,23 +19,23 @@ class Solution {
         queue.add(root);
         while(!queue.isEmpty())
         {
-            int size = queue.size();
+            int size=queue.size();
             HashSet<Integer> set = new HashSet<>();
             for(int i=0;i<size;i++)
             {
-                TreeNode node = queue.poll();
-                set.add(node.val);
-                if((node.left!=null && node.right!=null && node.left.val==x && node.right.val==y) || 
-                 (node.left!=null && node.right!=null && node.left.val==y && node.right.val==x))
-                return false;
+                TreeNode curr = queue.poll();
+                set.add(curr.val);
+                if(curr.left!=null && curr.right!=null && curr.left.val==x && curr.right.val==y)
+                    return false;
+                if(curr.left!=null && curr.right!=null && curr.left.val==y && curr.right.val==x)
+                    return false;
                 if(set.contains(x) && set.contains(y))
                     return true;
-                if(node.left!=null)
-                    queue.add(node.left);
-                if(node.right!=null)
-                    queue.add(node.right);
+                if(curr.left!=null)
+                    queue.add(curr.left);
+                if(curr.right!=null)
+                    queue.add(curr.right);
             }
-            
         }
         return false;
     }
