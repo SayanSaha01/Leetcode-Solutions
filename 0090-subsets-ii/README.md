@@ -4,12 +4,12 @@
 
 <p>&nbsp;</p>
 <p><strong class="example">Example 1:</strong></p>
-<pre><strong>Input:</strong> nums = [1,2,2]
+<pre style="position: relative;"><strong>Input:</strong> nums = [1,2,2]
 <strong>Output:</strong> [[],[1],[1,2],[1,2,2],[2],[2,2]]
-</pre><p><strong class="example">Example 2:</strong></p>
-<pre><strong>Input:</strong> nums = [0]
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre><p><strong class="example">Example 2:</strong></p>
+<pre style="position: relative;"><strong>Input:</strong> nums = [0]
 <strong>Output:</strong> [[],[0]]
-</pre>
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 <p>&nbsp;</p>
 <p><strong>Constraints:</strong></p>
 
