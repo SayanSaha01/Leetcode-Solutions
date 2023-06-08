@@ -7,8 +7,7 @@ class Solution {
         
         List<List<Integer>> convertedList = new ArrayList<>();
         for (List<Integer> l : set) {
-            ArrayList<Integer> arrayList = new ArrayList<>(l);
-            convertedList.add(arrayList);
+            convertedList.add(l);
         }
         
         return convertedList;
