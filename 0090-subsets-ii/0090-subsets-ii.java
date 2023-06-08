@@ -1,32 +1,32 @@
-class Solution {
-    public List<List<Integer>> subsetsWithDup(int[] nums) {
-        Arrays.sort(nums);
-        Set<List<Integer>> set = new HashSet<>();
-        List<Integer> inner = new ArrayList<>();
-        uniquesubset(set,inner,nums,0);
-        
-        List<List<Integer>> convertedList = new ArrayList<>();
-        for (List<Integer> l : set) {
-            convertedList.add(l);
-        }
-        
-        return convertedList;
-    }
-    public void uniquesubset(Set<List<Integer>> set,List<Integer> inner,int[] nums,int idx)
+class Solution 
+{
+    public List<List<Integer>> subsetsWithDup(int[] nums) 
     {
-        if(idx>=nums.length)
+        Arrays.sort(nums);
+        List<List<Integer>> ans = new ArrayList<>();   
+        helper(nums , 0, new ArrayList<Integer>() , ans);
+        return ans;
+    }
+    void helper(int nums[],int i,List<Integer> subset,List<List<Integer>> ans)
+    {
+        if(i==nums.length)
         {
-            set.add(new ArrayList<>(inner));
-            return;
+            ans.add(new ArrayList<>(subset));
+            return ;
         }
         
         //pick
-        inner.add(nums[idx]);
-        uniquesubset(set,inner,nums,idx+1);
+        subset.add(nums[i]);
+        helper(nums, i + 1, subset, ans);
+        subset.remove(subset.size() - 1);
         
         //not pick
-        inner.remove(inner.size()-1);
-        uniquesubset(set,inner,nums,idx+1);
-
+        //skipping picking the same number again 
+        while(i < nums.length - 1 && (nums[i] == nums[i + 1] ) )
+        {
+            i++ ;
+        }
+        helper(nums, i + 1, subset, ans);
+        return ;
     }
 }
