@@ -10,22 +10,25 @@
  */
 class Solution {
     public ListNode swapPairs(ListNode head) {
-        if (head == null || head.next == null) 
+        Stack<ListNode> st = new Stack<>();
+        if(head==null || head.next==null)
             return head;
-        Stack<ListNode> stack = new Stack();
-        ListNode curr = head;
-        while (curr != null) {
-            stack.push(curr);
-            curr = curr.next;
+        while(head!=null)
+        {
+            st.push(head);
+            head=head.next;
         }
         ListNode pop = null;
-        if (stack.size() % 2 == 1) pop = stack.pop();
-        while (stack.size() > 0) {
-            ListNode second = stack.pop();
-            ListNode first = stack.pop();
-            first.next = pop;
-            second.next = first;
-            pop = second;
+        if(st.size()%2==1)
+            pop = st.pop();
+        while(st.size()>0)
+        {
+            ListNode first = st.pop();
+            ListNode second = st.pop();
+            second.next=pop;
+            first.next = second;
+            
+            pop=first;
         }
         return pop;
     }
