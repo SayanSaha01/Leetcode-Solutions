@@ -1,40 +1,42 @@
-// refer this for clear understanding - https://www.youtube.com/watch?v=teVZX760hDA
-
-/*class Solution {
+/*
+class Solution {
     public int minCostClimbingStairs(int[] cost) {
-        int op1 = help(0,cost);
-        int op2 = help(1,cost);
+        int n = cost.length;
+        int op1 = mincost(0,cost);
+        int op2 = mincost(1,cost);
         return Math.min(op1,op2);
     }
-    public int help(int curr_stair,int[] cost)
+    public int mincost(int idx,int[] cost)
     {
-        if(curr_stair>=cost.length)
+        int n = cost.length;
+        if(idx>cost.length)
             return 0;
-        int total = cost[curr_stair];
-        int op1 = help(curr_stair+1,cost);
-        int op2 = help(curr_stair+2,cost);
-        total=Math.min(op1,op2);
-        return total;
+        if(idx==n-1 || idx==n-2)
+            return cost[idx];
+        return cost[idx] + Math.min(mincost(idx+1,cost),mincost(idx+2,cost));
     }
 }*/
-
 class Solution {
-    int[] dp = new int[1001];
     public int minCostClimbingStairs(int[] cost) {
+        int n = cost.length;
+        
+        int[] dp = new int[n+1];
         Arrays.fill(dp,-1);
-        int op1 = help(0,cost);
-        int op2 = help(1,cost);
+        
+        int op1 = mincost(0,cost,dp);
+        int op2 = mincost(1,cost,dp);
+        
         return Math.min(op1,op2);
     }
-    public int help(int curr_stair,int[] cost)
+    public int mincost(int idx,int[] cost,int[] dp)
     {
-        if(curr_stair>=cost.length)
+        int n = cost.length;
+        if(idx>cost.length)
             return 0;
-        if(dp[curr_stair]!=-1)
-            return dp[curr_stair];
-        int op1 = help(curr_stair+1,cost);
-        int op2 = help(curr_stair+2,cost);
-        int total=cost[curr_stair]+Math.min(op1,op2);
-        return dp[curr_stair]=total;
+        if(dp[idx]!=-1)
+            return dp[idx];
+        if(idx==n-1 || idx==n-2)
+            return cost[idx];
+        return dp[idx]=cost[idx] + Math.min(mincost(idx+1,cost,dp),mincost(idx+2,cost,dp));
     }
 }
