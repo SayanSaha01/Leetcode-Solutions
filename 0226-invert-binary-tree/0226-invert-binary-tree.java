@@ -22,6 +22,7 @@ class Solution {
     {
         if(root==null)
             return;
+        
         TreeNode temp = root.left;
         root.left = root.right;
         root.right = temp;
