@@ -10,27 +10,29 @@
  */
 class Solution {
     public int[] nextLargerNodes(ListNode head) {
-        ArrayList<Integer> lst = new ArrayList<>();  
         ListNode temp = head;
-        while(temp != null){
-            int val = 0;
+        List<Integer> list = new ArrayList<>();
+        while(temp!=null)
+        {
+            int val=0;
             ListNode curr = temp;
-            
-            while(curr != null){
-                if(curr.val > temp.val){
+            while(curr!=null)
+            {
+                if(curr.val>temp.val)
+                {
                     val = curr.val;
                     break;
                 }
-                curr = curr.next;
+                curr=curr.next;
             }
-            lst.add(val);
+            list.add(val);
             temp = temp.next;
-            
         }
-
-        int[] arr = new int[lst.size()];
-        for(int i = 0; i< lst.size(); i++){
-            arr[i] = lst.get(i);
+        
+        int[] arr = new int[list.size()];
+        for(int i=0;i<list.size();i++)
+        {
+            arr[i]=list.get(i);
         }
         return arr;
     }
