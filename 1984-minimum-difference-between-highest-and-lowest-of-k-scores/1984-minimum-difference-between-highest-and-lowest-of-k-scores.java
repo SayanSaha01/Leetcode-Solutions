@@ -5,7 +5,7 @@ class Solution {
         int n = nums.length;
         for(int i=0;i<n-k+1;i++)
         {
-            min=Math.min(nums[i+k-1]-nums[i],min);
+            min=Math.min(nums[i+k-1]-nums[i],min); //as it is asked to find the difference between the highest and the lowest of the k scores and the array is sorted so nums[i+k-1] and nums[i] denote the highest and the lowest score of the kth array
         }
         return min;
     }
