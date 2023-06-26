@@ -6,7 +6,7 @@ class Solution {
         for(int i=0;i<nums.length;i++)
         {
             sum+=nums[i];
-            int key = (int)sum%k;
+            int key = k==0?sum:sum%k;
             if(map.containsKey(key))
             {
                 if(i-map.get(key)>1)
