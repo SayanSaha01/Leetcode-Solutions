@@ -1,20 +1,21 @@
 class Solution {
     public int minSubArrayLen(int target, int[] nums) {
-        int i=0,j=0,sum=0;
-        int min = Integer.MAX_VALUE;
-        while(j<nums.length){
-            sum+=nums[j];
-            if(sum<target) //*Checking status of sum*
-                    j++; 
-            else if(sum>=target){
-                 while(sum>=target){  //*Removing element and also calculating size of window*
-                    sum-=nums[i];
-                    min = Math.min(j-i+1, min);
-                    i++;
-                }
-                j++; 
+        int l =0;
+        int sum = 0;
+        int res = Integer.MAX_VALUE;
+
+        for(int r =0; r< nums.length; r++)
+        {
+            sum+=nums[r];
+            while(sum>=target)
+            {
+                res = Math.min(res,r-l +1);
+                sum -= nums[l];
+                l++;
             }
         }
-        return min == Integer.MAX_VALUE ? 0 : min;
+
+        if(res == Integer.MAX_VALUE) return 0;
+        return res;
     }
 }
