@@ -23,7 +23,7 @@ class Solution {
         if(root==null)
             return list;
         Queue<Node> queue = new LinkedList<>();
-        queue.offer(root);
+        queue.add(root);
         while(!queue.isEmpty())
         {
             int size=queue.size();
