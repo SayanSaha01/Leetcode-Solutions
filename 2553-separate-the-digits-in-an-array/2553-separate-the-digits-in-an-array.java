@@ -1,21 +1,24 @@
 class Solution {
-    ArrayList<Integer> list = new ArrayList<Integer>();
+    List<Integer> list=new ArrayList<>();
     public int[] separateDigits(int[] nums) {
         for(int i:nums)
         {
-            add(i);
+            func(i);
         }
-        int [] arr = new int[list.size()];
-        for (int i = 0; i < list.size(); i++)
-            arr[i] = list.get(i);
+        int[] arr = new int[list.size()];
+        for(int i=0;i<list.size();i++)
+        {
+            arr[i]=list.get(i);
+        }
         return arr;
     }
-    public void add(int num)
+    public void func(int num)
     {
         String val = String.valueOf(num);
-        for(int i=0;i<val.length();i++)
+        char[] arr = val.toCharArray();
+        for(int i=0;i<arr.length;i++)
         {
-            list.add(val.charAt(i)-'0');
+            list.add(arr[i]-'0');
         }
     }
 }
