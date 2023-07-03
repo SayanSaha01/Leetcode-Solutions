@@ -1,32 +1,21 @@
-class Solution 
-{
-    public List<List<Integer>> subsetsWithDup(int[] nums) 
-    {
+class Solution {
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        List<List<Integer>> list = new ArrayList<>();
         Arrays.sort(nums);
-        List<List<Integer>> ans = new ArrayList<>();   
-        helper(nums , 0, new ArrayList<Integer>() , ans);
-        return ans;
+        List<Integer> inner = new ArrayList<>();
+        subset(list,inner,nums,0);
+        return list;
     }
-    void helper(int nums[],int i,List<Integer> subset,List<List<Integer>> ans)
+    public void subset(List<List<Integer>> list,List<Integer> inner,int[] nums,int idx)
     {
-        if(i==nums.length)
+        list.add(new ArrayList<>(inner));
+        for(int i=idx;i<nums.length;i++)
         {
-            ans.add(new ArrayList<>(subset));
-            return ;
+            if(i>idx && nums[i]==nums[i-1])
+                continue;
+            inner.add(nums[i]);
+            subset(list,inner,nums,i+1);
+            inner.remove(inner.size()-1);
         }
-        
-        //pick
-        subset.add(nums[i]);
-        helper(nums, i + 1, subset, ans);
-        subset.remove(subset.size() - 1);
-        
-        //not pick
-        //skipping picking the same number again 
-        while(i < nums.length - 1 && (nums[i] == nums[i + 1] ) )
-        {
-            i++ ;
-        }
-        helper(nums, i + 1, subset, ans);
-        return ;
     }
 }
