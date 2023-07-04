@@ -32,9 +32,12 @@ class Solution {
             return 0;
         if(i==0 && j==0)
             return 1;
+        
         if(dp[i][j]!=-1)
             return dp[i][j];
-        dp[i][j] = recursion(i-1,j,grid,dp) + recursion(i,j-1,grid,dp);
+        int up = recursion(i-1,j,grid,dp);
+        int left = recursion(i,j-1,grid,dp);
+        dp[i][j] = up+left;
         return dp[i][j];
     }
 }
