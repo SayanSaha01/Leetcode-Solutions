@@ -15,10 +15,11 @@
  */
 class Solution {
     public int sumEvenGrandparent(TreeNode root) {
+        if(root==null)
+            return 0;
         int sum=0;
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
-        
         while(!queue.isEmpty())
         {
             TreeNode node = queue.poll();
@@ -38,10 +39,10 @@ class Solution {
                 queue.add(node.right);
                 if(node.val%2==0)
                 {
-                    if(node.right.right!=null)
-                        sum+=node.right.right.val;
                     if(node.right.left!=null)
                         sum+=node.right.left.val;
+                    if(node.right.right!=null)
+                        sum+=node.right.right.val;
                 }
             }
         }
