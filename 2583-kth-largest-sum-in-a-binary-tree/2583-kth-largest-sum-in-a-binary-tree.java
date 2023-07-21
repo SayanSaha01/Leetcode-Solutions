@@ -16,24 +16,24 @@
 class Solution {
     public long kthLargestLevelSum(TreeNode root, int k) {
         List<Long> list = new ArrayList<>();
-        Queue<TreeNode> q = new LinkedList<>();
-        q.offer(root);
-        while(!q.isEmpty())
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        while(!queue.isEmpty())
         {
-            int size = q.size();
+            int size=queue.size();
             long sum=0;
             for(int i=0;i<size;i++)
             {
-                if(q.peek().left!=null)
-                    q.add(q.peek().left);
-                if(q.peek().right!=null)
-                    q.add(q.peek().right);
-                
-                sum+=(long)q.poll().val;
+                TreeNode node = queue.poll();
+                sum+=node.val;
+                if(node.left!=null)
+                    queue.add(node.left);
+                if(node.right!=null)
+                    queue.add(node.right);
             }
             list.add(sum);
         }
         Collections.sort(list);
-        return k>list.size()?-1:list.get(list.size()-k);
+        return k>list.size()?-1:(long)list.get(list.size()-k);
     }
 }
