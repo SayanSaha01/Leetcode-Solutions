@@ -8,13 +8,12 @@ class Solution {
                 if(grid[r][c] == 1){ // find the start point
                     sx = r;
                     sy = c;
-                }else if(grid[r][c] == 0){
+                }
+                else if(grid[r][c] == 0){
                     zero++;
                 }
             }
         }
-        
-        
         return dfs(grid,sx,sy,zero);
     }
     
@@ -26,6 +25,7 @@ class Solution {
         if(grid[x][y] == 2){
             return zero == -1 ? 1 : 0;
         }
+        //why we are checking for zero=-1 because every path must traverse through all the zeroes to finally reach target=2 and why zero==-1 because after iterating through all the zeroes when it reaches the target the count of zero becomes -1 after it loops over the final 0, we are then again initialising the grid[x][y]=0 after traversing all possible routes to 0 for the next possible path
         grid[x][y] = -1;
         zero--;
         
