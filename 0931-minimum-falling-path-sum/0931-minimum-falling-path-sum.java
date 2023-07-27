@@ -1,29 +1,42 @@
 class Solution {
     public int minFallingPathSum(int[][] matrix) {
-        int min = Integer.MAX_VALUE;
-        int n = matrix.length;
-        int m = matrix[0].length;
-        int[][] dp = new int[n][m];
-        for(int[] row:dp)
-        {
-            Arrays.fill(row,-1);
+        int m = matrix.length;
+        int n = matrix[0].length;
+
+        int[][] dp = new int[m][n];
+        for(int[] temp:dp)
+            Arrays.fill(temp,Integer.MAX_VALUE); //since the constraints say we can also have negative values
+
+        int max=99999;
+        for(int i=0;i<n;i++){
+            int val = recur(0,i,matrix,dp,m,n);
+            max = Math.min(max,val);
         }
-        //since we can start from any element in the first row
-        for(int j=0;j<m;j++)
-        {
-            min = Math.min(min,recursion(0,j,n-1,m-1,matrix,dp));
-        }
-        return min;
+
+        return max;    
     }
-    public int recursion(int i,int j,int n,int m,int[][] matrix,int[][] dp)
-    {
-        if(i<0 || j<0 || i>m || j>n) 
-            return Integer.MAX_VALUE;
-        if(i == n) 
-            return matrix[i][j];
-        if(dp[i][j]!=-1)
-            return dp[i][j];
-       return dp[i][j] = matrix[i][j] + Math.min(recursion(i+1,j-1,m,n,matrix,dp),
-           Math.min(recursion(i+1,j,m,n,matrix,dp),recursion(i+1,j+1,m,n,matrix,dp)));
+
+
+    public int recur(int r,int c,int[][]matrix,int[][] dp,int m, int n){
+        if(r<0 || r>=m || c<0 || c>=n ) 
+            return 99999; // return the largest value possible so as to not consider it
+        
+        if(r==m-1)
+            return matrix[r][c];
+
+
+        if(dp[r][c]!=Integer.MAX_VALUE)
+            return dp[r][c];
+        
+        
+        int down = matrix[r][c]+recur(r+1,c,matrix,dp,m,n);
+        int downLeft = matrix[r][c]+recur(r+1,c-1,matrix,dp,m,n);
+        int downRight = matrix[r][c]+recur(r+1,c+1,matrix,dp,m,n);
+
+        dp[r][c] = Math.min(down,Math.min(downLeft,downRight));
+        return dp[r][c];
     }
+
+
+
 }
