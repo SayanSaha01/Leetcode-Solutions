@@ -9,6 +9,6 @@ class Solution {
                 j++;
             }
         }
-        return (i == s.length());
+        return (i == s.length())?true:false;
     }
 }
