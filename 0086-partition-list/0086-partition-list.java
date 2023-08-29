@@ -27,15 +27,15 @@ class Solution {
         head=null;
         while(!s2.isEmpty())
         {
-            ListNode pop = s2.pop();
-            pop.next=head;
-            head=pop;
+            ListNode temp = s2.pop();
+            temp.next=head;
+            head=temp;
         }
         while(!s1.isEmpty())
         {
-            ListNode pop = s1.pop();
-            pop.next=head;
-            head=pop; 
+            ListNode temp = s1.pop();
+            temp.next=head;
+            head=temp;
         }
         return head;
     }
