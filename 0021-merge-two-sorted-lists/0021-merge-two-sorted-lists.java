@@ -11,24 +11,21 @@
 class Solution {
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
         PriorityQueue<Integer> pq = new PriorityQueue<>();
-        while(list1!=null)
-        {
+        while(list1!=null){
             pq.add(list1.val);
             list1=list1.next;
         }
-        while(list2!=null)
-        {
+        while(list2!=null){
             pq.add(list2.val);
-            list2 = list2.next;
+            list2=list2.next;
         }
-        ListNode head = new ListNode(-1);
-        ListNode temp = head;
-        while(!pq.isEmpty())
-        {
-            head.next=new ListNode(pq.poll());
-            head=head.next;
+        ListNode node = new ListNode(-1);
+        ListNode temp = node;
+        while(!pq.isEmpty()){
+            node.next=new ListNode(pq.poll());
+            node=node.next;
         }
-        head.next=null;
+        node.next=null;
         return temp.next;
     }
 }
