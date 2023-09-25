@@ -10,15 +10,15 @@
  */
 class Solution {
     public ListNode deleteDuplicates(ListNode head) {
-        if(head==null || head.next==null)
-            return head;
-        ListNode temp = head;
-        while(head.next!=null){
-            if(head.val==head.next.val){
-                head.next=head.next.next;
+        ListNode slow=head;
+        ListNode temp=slow;
+        while(slow!=null && slow.next!=null){
+            if(slow.val==slow.next.val){
+                slow.next=slow.next.next;
             }
-            else{
-                head=head.next;
+            else
+            {
+                slow=slow.next;
             }
         }
         return temp;
