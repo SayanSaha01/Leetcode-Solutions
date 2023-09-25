@@ -10,33 +10,27 @@
  */
 class Solution {
     public ListNode partition(ListNode head, int x) {
-        Stack<ListNode> s1 = new Stack<>();
-        Stack<ListNode> s2 = new Stack<>();
-        while(head!=null)
-        {
-            if(head.val<x)
-            {
-                s1.push(head);
+        LinkedList<ListNode> lesser = new LinkedList<>();
+        LinkedList<ListNode> greater = new LinkedList<>();
+        while (head != null) {
+            if (head.val < x) {
+                lesser.add(head);
+            } else {
+                greater.add(head);
             }
-            else
-            {
-                s2.push(head);
-            }
-            head=head.next;
+            head = head.next;
         }
-        head=null;
-        while(!s2.isEmpty())
-        {
-            ListNode temp = s2.pop();
-            temp.next=head;
-            head=temp;
+        ListNode temp = new ListNode(-1);
+        ListNode t = temp;
+        while (!lesser.isEmpty()) {
+            temp.next = lesser.pollFirst();
+            temp = temp.next;
         }
-        while(!s1.isEmpty())
-        {
-            ListNode temp = s1.pop();
-            temp.next=head;
-            head=temp;
+        while (!greater.isEmpty()) {
+            temp.next = greater.pollFirst();
+            temp = temp.next;
         }
-        return head;
+        temp.next = null;
+        return t.next;
     }
 }
