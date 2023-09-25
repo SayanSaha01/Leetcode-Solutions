@@ -12,7 +12,7 @@ class Solution {
     public boolean isPalindrome(ListNode head) {
         StringBuilder sb = new StringBuilder();
         while(head!=null){
-            sb.append(head.val+"");
+            sb.append(head.val);
             head=head.next;
         }
         String s = sb.toString();
