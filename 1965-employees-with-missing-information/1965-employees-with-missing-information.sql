@@ -1,5 +1,9 @@
-# Write your MySQL query statement below
-select e.employee_id from Employees e left join Salaries s on e.employee_id = s.employee_id where s.salary is null
+select T.employee_id 
+from 
+(select * from Employees e left join Salaries s using(employee_id)
 union
-select s.employee_id from Employees e right join Salaries s on s.employee_id=e.employee_id where e.name is null 
-order by employee_id asc;
+select * from Employees e right join Salaries s using(employee_id)
+)
+As T
+where T.name is null or T.salary is null
+order by T.employee_id;
