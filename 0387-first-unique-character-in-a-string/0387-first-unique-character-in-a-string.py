@@ -1,18 +1,10 @@
 class Solution:
     def firstUniqChar(self, s: str) -> int:
-        duplicate = []
-        unique = []
+        map={}
         for i in s:
-            if i in unique:
-                duplicate.append(i)
-            else:
-                unique.append(i)
-        # print(unique)
-        # print(duplicate)
-        for c in unique:
-            if c not in duplicate:
-                return s.index(c)
+            map[i]=map.get(i,0)+1
+        for i in map:
+            if map[i]==1:
+                return s.index(i)
         return -1
             
-        
-        
